@@ -80,4 +80,21 @@
     return compressedData;
 }
 
+- (UIImage *)ek_captureWithRectRatio:(CGRect)rectRatio {
+    CGFloat width = self.size.width;
+    CGFloat height = self.size.height;
+    CGRect rect = CGRectMake(rectRatio.origin.x * width, rectRatio.origin.y * height, rectRatio.size.width * width, rectRatio.size.height * height);
+    return [self ek_captureWithRect:rect];
+}
+
+- (UIImage *)ek_captureWithRect:(CGRect)rect {
+    CGImageRef imageRef = self.CGImage;
+    CGRect finalRect = CGRectMake(CGRectGetMinY(rect)*self.scale, CGRectGetMinX(rect)*self.scale, CGRectGetHeight(rect)*self.scale, CGRectGetWidth(rect)*self.scale);
+    CGImageRef imagePartRef = CGImageCreateWithImageInRect(imageRef, finalRect);
+    UIImage * cropImage = [UIImage imageWithCGImage:imagePartRef scale:self.scale orientation:self.imageOrientation];
+    CGImageRelease(imagePartRef);
+    
+    return cropImage;
+}
+
 @end

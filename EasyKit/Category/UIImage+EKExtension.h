@@ -37,4 +37,19 @@
 - (NSData *)ek_compressImageUnderBytes:(NSUInteger)bytes;
 
 
+/**
+ 截取图片
+
+ @param rectRatio 截取的区域比例
+ */
+- (UIImage *)ek_captureWithRectRatio:(CGRect)rectRatio;
+
+
+/**
+ 截取图片
+
+ @param rect 截取的区域
+ */
+- (UIImage *)ek_captureWithRect:(CGRect)rect;
+
 @end
