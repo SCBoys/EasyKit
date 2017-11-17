@@ -13,6 +13,7 @@
 		8F4C69F31FBD76710011DFA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C69F21FBD76710011DFA9 /* main.m */; };
 		8F4C6A111FBEC4B30011DFA9 /* EKTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A0D1FBEC4B30011DFA9 /* EKTableViewController.m */; };
 		8F4C6A121FBEC4B30011DFA9 /* EKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A101FBEC4B30011DFA9 /* EKTextField.m */; };
+		8F4C6A1E1FBEC9820011DFA9 /* UIImage+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A1D1FBEC9820011DFA9 /* UIImage+EKExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		8F4C6A0D1FBEC4B30011DFA9 /* EKTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKTableViewController.m; sourceTree = "<group>"; };
 		8F4C6A0F1FBEC4B30011DFA9 /* EKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKTextField.h; sourceTree = "<group>"; };
 		8F4C6A101FBEC4B30011DFA9 /* EKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKTextField.m; sourceTree = "<group>"; };
+		8F4C6A1C1FBEC9820011DFA9 /* UIImage+EKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+EKExtension.h"; sourceTree = "<group>"; };
+		8F4C6A1D1FBEC9820011DFA9 /* UIImage+EKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EKExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 		8F4C6A041FBD7AB80011DFA9 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8F4C6A1C1FBEC9820011DFA9 /* UIImage+EKExtension.h */,
+				8F4C6A1D1FBEC9820011DFA9 /* UIImage+EKExtension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F4C69E81FBD76710011DFA9 /* ViewController.m in Sources */,
+				8F4C6A1E1FBEC9820011DFA9 /* UIImage+EKExtension.m in Sources */,
 				8F4C69F31FBD76710011DFA9 /* main.m in Sources */,
 				8F4C6A121FBEC4B30011DFA9 /* EKTextField.m in Sources */,
 				8F4C69E51FBD76710011DFA9 /* AppDelegate.m in Sources */,
