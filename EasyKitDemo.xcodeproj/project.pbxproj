@@ -17,6 +17,8 @@
 		8F4C6A221FBECECE0011DFA9 /* UIView+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A211FBECECE0011DFA9 /* UIView+EKExtension.m */; };
 		8F4C6A251FBED4730011DFA9 /* NSArray+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A241FBED4730011DFA9 /* NSArray+EKExtension.m */; };
 		8F4C6A2D1FBED5ED0011DFA9 /* EasyKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A2C1FBED5ED0011DFA9 /* EasyKitDemoTests.m */; };
+		8F860CDD1FC81D3100F73DF9 /* EKBottomPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F860CDB1FC81D3100F73DF9 /* EKBottomPopView.m */; };
+		8F860CE01FC81E5300F73DF9 /* UIColor+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F860CDF1FC81E5300F73DF9 /* UIColor+EKExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,10 @@
 		8F4C6A2A1FBED5ED0011DFA9 /* EasyKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4C6A2C1FBED5ED0011DFA9 /* EasyKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EasyKitDemoTests.m; sourceTree = "<group>"; };
 		8F4C6A2E1FBED5ED0011DFA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F860CDB1FC81D3100F73DF9 /* EKBottomPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKBottomPopView.m; sourceTree = "<group>"; };
+		8F860CDC1FC81D3100F73DF9 /* EKBottomPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKBottomPopView.h; sourceTree = "<group>"; };
+		8F860CDE1FC81E5300F73DF9 /* UIColor+EKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EKExtension.h"; sourceTree = "<group>"; };
+		8F860CDF1FC81E5300F73DF9 /* UIColor+EKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EKExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,7 @@
 		8F4C69FA1FBD78660011DFA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8F860CD41FC81D2400F73DF9 /* EKBottomPopView */,
 				8F4C6A0B1FBEC4B30011DFA9 /* EKTableViewController */,
 				8F4C6A0E1FBEC4B30011DFA9 /* EKTextField */,
 			);
@@ -127,6 +134,8 @@
 		8F4C6A041FBD7AB80011DFA9 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8F860CDE1FC81E5300F73DF9 /* UIColor+EKExtension.h */,
+				8F860CDF1FC81E5300F73DF9 /* UIColor+EKExtension.m */,
 				8F4C6A1C1FBEC9820011DFA9 /* UIImage+EKExtension.h */,
 				8F4C6A1D1FBEC9820011DFA9 /* UIImage+EKExtension.m */,
 				8F4C6A201FBECECE0011DFA9 /* UIView+EKExtension.h */,
@@ -162,6 +171,15 @@
 				8F4C6A2E1FBED5ED0011DFA9 /* Info.plist */,
 			);
 			path = EasyKitDemoTests;
+			sourceTree = "<group>";
+		};
+		8F860CD41FC81D2400F73DF9 /* EKBottomPopView */ = {
+			isa = PBXGroup;
+			children = (
+				8F860CDC1FC81D3100F73DF9 /* EKBottomPopView.h */,
+				8F860CDB1FC81D3100F73DF9 /* EKBottomPopView.m */,
+			);
+			path = EKBottomPopView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,11 +283,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F4C6A251FBED4730011DFA9 /* NSArray+EKExtension.m in Sources */,
+				8F860CDD1FC81D3100F73DF9 /* EKBottomPopView.m in Sources */,
 				8F4C6A221FBECECE0011DFA9 /* UIView+EKExtension.m in Sources */,
 				8F4C69E81FBD76710011DFA9 /* ViewController.m in Sources */,
 				8F4C6A1E1FBEC9820011DFA9 /* UIImage+EKExtension.m in Sources */,
 				8F4C69F31FBD76710011DFA9 /* main.m in Sources */,
 				8F4C6A121FBEC4B30011DFA9 /* EKTextField.m in Sources */,
+				8F860CE01FC81E5300F73DF9 /* UIColor+EKExtension.m in Sources */,
 				8F4C69E51FBD76710011DFA9 /* AppDelegate.m in Sources */,
 				8F4C6A111FBEC4B30011DFA9 /* EKTableViewController.m in Sources */,
 			);
