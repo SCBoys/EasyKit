@@ -19,6 +19,10 @@
 		8F4C6A2D1FBED5ED0011DFA9 /* EasyKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A2C1FBED5ED0011DFA9 /* EasyKitDemoTests.m */; };
 		8F860CDD1FC81D3100F73DF9 /* EKBottomPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F860CDB1FC81D3100F73DF9 /* EKBottomPopView.m */; };
 		8F860CE01FC81E5300F73DF9 /* UIColor+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F860CDF1FC81E5300F73DF9 /* UIColor+EKExtension.m */; };
+		8FAF35881FFE167E00E25086 /* UIAlertView+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35801FFE167D00E25086 /* UIAlertView+EKBlock.m */; };
+		8FAF35891FFE167E00E25086 /* UIActionSheet+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */; };
+		8FAF358A1FFE167E00E25086 /* EKAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35841FFE167E00E25086 /* EKAlertAction.m */; };
+		8FAF358B1FFE167E00E25086 /* EKAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35861FFE167E00E25086 /* EKAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,14 @@
 		8F860CDC1FC81D3100F73DF9 /* EKBottomPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKBottomPopView.h; sourceTree = "<group>"; };
 		8F860CDE1FC81E5300F73DF9 /* UIColor+EKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EKExtension.h"; sourceTree = "<group>"; };
 		8F860CDF1FC81E5300F73DF9 /* UIColor+EKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EKExtension.m"; sourceTree = "<group>"; };
+		8FAF35801FFE167D00E25086 /* UIAlertView+EKBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+EKBlock.m"; sourceTree = "<group>"; };
+		8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+EKBlock.m"; sourceTree = "<group>"; };
+		8FAF35821FFE167E00E25086 /* EKAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKAlertAction.h; sourceTree = "<group>"; };
+		8FAF35831FFE167E00E25086 /* UIAlertView+EKBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+EKBlock.h"; sourceTree = "<group>"; };
+		8FAF35841FFE167E00E25086 /* EKAlertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKAlertAction.m; sourceTree = "<group>"; };
+		8FAF35851FFE167E00E25086 /* UIActionSheet+EKBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+EKBlock.h"; sourceTree = "<group>"; };
+		8FAF35861FFE167E00E25086 /* EKAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKAlertView.m; sourceTree = "<group>"; };
+		8FAF35871FFE167E00E25086 /* EKAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKAlertView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +136,7 @@
 		8F4C69FA1FBD78660011DFA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8FAF357F1FFE167900E25086 /* EKAlertView */,
 				8F860CD41FC81D2400F73DF9 /* EKBottomPopView */,
 				8F4C6A0B1FBEC4B30011DFA9 /* EKTableViewController */,
 				8F4C6A0E1FBEC4B30011DFA9 /* EKTextField */,
@@ -180,6 +193,21 @@
 				8F860CDB1FC81D3100F73DF9 /* EKBottomPopView.m */,
 			);
 			path = EKBottomPopView;
+			sourceTree = "<group>";
+		};
+		8FAF357F1FFE167900E25086 /* EKAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				8FAF35871FFE167E00E25086 /* EKAlertView.h */,
+				8FAF35861FFE167E00E25086 /* EKAlertView.m */,
+				8FAF35821FFE167E00E25086 /* EKAlertAction.h */,
+				8FAF35841FFE167E00E25086 /* EKAlertAction.m */,
+				8FAF35831FFE167E00E25086 /* UIAlertView+EKBlock.h */,
+				8FAF35801FFE167D00E25086 /* UIAlertView+EKBlock.m */,
+				8FAF35851FFE167E00E25086 /* UIActionSheet+EKBlock.h */,
+				8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */,
+			);
+			path = EKAlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,15 +311,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F4C6A251FBED4730011DFA9 /* NSArray+EKExtension.m in Sources */,
+				8FAF35881FFE167E00E25086 /* UIAlertView+EKBlock.m in Sources */,
 				8F860CDD1FC81D3100F73DF9 /* EKBottomPopView.m in Sources */,
 				8F4C6A221FBECECE0011DFA9 /* UIView+EKExtension.m in Sources */,
 				8F4C69E81FBD76710011DFA9 /* ViewController.m in Sources */,
+				8FAF358B1FFE167E00E25086 /* EKAlertView.m in Sources */,
 				8F4C6A1E1FBEC9820011DFA9 /* UIImage+EKExtension.m in Sources */,
 				8F4C69F31FBD76710011DFA9 /* main.m in Sources */,
 				8F4C6A121FBEC4B30011DFA9 /* EKTextField.m in Sources */,
 				8F860CE01FC81E5300F73DF9 /* UIColor+EKExtension.m in Sources */,
 				8F4C69E51FBD76710011DFA9 /* AppDelegate.m in Sources */,
 				8F4C6A111FBEC4B30011DFA9 /* EKTableViewController.m in Sources */,
+				8FAF35891FFE167E00E25086 /* UIActionSheet+EKBlock.m in Sources */,
+				8FAF358A1FFE167E00E25086 /* EKAlertAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
