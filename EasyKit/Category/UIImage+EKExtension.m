@@ -20,6 +20,9 @@
 }
 
 + (UIImage *)ek_imageWithColor:(UIColor*)color andSize:(CGSize)size andCornerRaduis:(CGFloat)cornerRaduis {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    cornerRaduis = cornerRaduis * scale;
+    
     CGRect r = CGRectMake(0.0f, 0.0f, size.width, size.height);
     UIGraphicsBeginImageContext(r.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
