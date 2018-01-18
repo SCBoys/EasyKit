@@ -13,8 +13,8 @@ Pod::Spec.new do |s|
   s.license      = "MIT"          # 开源证书
   s.summary      = "extenstion tool" # 项目简介
 
-  s.homepage     = "https://github.com/owliVendy/EasyKit" # 你的仓库主页
-  s.source       = { :git => "https://github.com/owliVendy/EasyKit.git", :tag => "#{s.version}" } #你的仓库地址，不能用SSH地址
+  s.homepage     = "https://github.com/SCBoys/EasyKit" # 你的仓库主页
+  s.source       = { :git => "https://github.com/SCBoys/EasyKit.git", :tag => "#{s.version}" } #你的仓库地址，不能用SSH地址
   s.source_files = "EasyKit/**/*.{h,m}"
   s.requires_arc = true # 是否启用ARC
   s.platform     = :ios, "8.0" #平台及支持的最低版本
