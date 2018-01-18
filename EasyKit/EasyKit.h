@@ -1,20 +1,24 @@
 //
 //  EasyKit.h
-//  EasyKitDemo
+//  EasyKit
 //
-//  Created by TF14975 on 2017/11/17.
-//  Copyright © 2017年 EK. All rights reserved.
+//  Created by John TSai on 2018/1/18.
+//  Copyright © 2018年 EK. All rights reserved.
 //
 
-#ifndef EasyKit_h
-#define EasyKit_h
+#import <UIKit/UIKit.h>
 
-//category
-#import "UIImage+EKExtension.h"
-#import "UIView+EKExtension.h"
-#import "NSArray+EKExtension.h"
-//view
-#import "EKTableViewController.h"
-#import "EKTextField.h"
+//! Project version number for EasyKit.
+FOUNDATION_EXPORT double EasyKitVersionNumber;
 
-#endif /* EasyKit_h */
+//! Project version string for EasyKit.
+FOUNDATION_EXPORT const unsigned char EasyKitVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <EasyKit/PublicHeader.h>
+#import <EasyKit/UIColor+EKExtension.h>
+#import <EasyKit/UIImage+EKExtension.h>
+#import <EasyKit/UIView+EKExtension.h>
+#import <EasyKit/NSArray+EKExtension.h>
+#import <EasyKit/NSString+EKExtension.h>
+
+
