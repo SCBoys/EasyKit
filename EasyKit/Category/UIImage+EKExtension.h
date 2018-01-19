@@ -52,4 +52,21 @@
  */
 - (UIImage *)ek_captureWithRect:(CGRect)rect;
 
+
+/**
+ 给图片添加圆角
+
+ @param raduisRatio 圆角比例
+ @return 返回带圆角的图片
+ */
+- (UIImage *)ek_addCornerRaduisRatio:(CGSize)raduisRatio;
+
+/**
+ 给图片添加圆角
+
+ @param raduis 圆角值
+ @return 返回带圆角的图片
+ */
+- (UIImage *)ek_addCornerRaduis:(CGSize)raduis;
+
 @end

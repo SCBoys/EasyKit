@@ -100,4 +100,31 @@
     return cropImage;
 }
 
+- (UIImage *)ek_addCornerRaduisRatio:(CGSize)raduisRatio {
+    CGSize raduis = CGSizeZero;
+    raduis.width = self.size.width * raduisRatio.width;
+    raduis.height = self.size.height * raduisRatio.height;
+    return [self ek_addCornerRaduis:raduis];
+}
+
+- (UIImage *)ek_addCornerRaduis:(CGSize)raduis {
+    CGRect rect = CGRectZero;
+    rect.size = self.size;
+    
+    UIGraphicsBeginImageContextWithOptions(rect.size, false, [UIScreen mainScreen].scale);
+    CGContextAddPath(UIGraphicsGetCurrentContext(),
+                     [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerAllCorners cornerRadii:(CGSize){raduis.width,raduis.height}].CGPath);
+    CGContextClip(UIGraphicsGetCurrentContext());
+    
+    [self drawInRect:rect];
+    
+    CGContextDrawPath(UIGraphicsGetCurrentContext(), kCGPathFillStroke);
+    
+    UIImage *output = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return output;
+}
+
 @end
