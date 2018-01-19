@@ -3,5 +3,5 @@
 # Install
 if you use [Carthage](https://github.com/Carthage/Carthage) to manage your dependencies, simply add EasyKit to your `Cartfile`:
 ```
-	github "SCBoys/EasyKit" ~> 0.0.2
+github "SCBoys/EasyKit" ~> 0.0.2
 ```
