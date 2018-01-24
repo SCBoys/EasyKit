@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "EKBottomPopView.h"
+#import "EKPopView.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,EKBottomPopViewDelegate>
-@property (nonatomic, weak) EKBottomPopView *popView;
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,EKPopViewDelegate>
+@property (nonatomic, weak) EKPopView *popView;
 @property (nonatomic, copy) NSArray<NSString *> *dataSource;
 @end
 
@@ -37,15 +37,24 @@
 - (void)buttonClick:(id)sender {
     NSLog(@"点击显示按钮");
     
-    EKBottomPopView *aPopView = [[EKBottomPopView alloc] init];
-    aPopView.titleLabel.text = @"选择时间";
+    EKPopView *aPopView = [[EKPopView alloc] init];
+    UIView *toolBar = [[UIView alloc] init];
+    toolBar.backgroundColor = [UIColor redColor];
+    aPopView.bottomViewHeight = 100;
+    aPopView.bottomView = toolBar;
+    
     aPopView.popViewDelegate = self;
-    aPopView.tableView.delegate = self;
-    aPopView.tableView.dataSource = self;
-    [aPopView.leftTopBarButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-    [aPopView.rightTopBarButton addTarget:self action:@selector(ok) forControlEvents:UIControlEventTouchUpInside];
+    
+    //set dataView
+    UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    aPopView.dataView = table;
+    table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    table.separatorInset = UIEdgeInsetsZero;
+    table.delegate = self;
+    table.dataSource = self;
+    
     self.popView = aPopView;
-    [aPopView showInView:self.view];
+    [aPopView showInView:self.view fromDirection:EKPopViewDirectionBottom];
 }
 
 - (void)cancel {
@@ -78,7 +87,7 @@
     [self.popView dismiss];
 }
 
-- (void)ekBottomPopViewClickOnMaskView:(EKBottomPopView *)view {
+- (void)ekBottomPopViewClickOnMaskView:(EKPopView *)view {
     [view dismiss];
 }
 

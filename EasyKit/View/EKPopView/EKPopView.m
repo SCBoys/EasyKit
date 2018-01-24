@@ -1,15 +1,15 @@
 //
-//  EKBottomPopView.m
+//  EKPopView.m
 //  RoadHome
 //
 //  Created by TF14975 on 2017/9/6.
 //  Copyright © 2017年 Transfar. All rights reserved.
 //
 
-#import "EKBottomPopView.h"
+#import "EKPopView.h"
 
-@interface EKBottomPopView ()
-@property (nonatomic, weak) UITableView *tableView;
+@interface EKPopView ()
+@property (nonatomic, assign) EKPopViewDirection direction;
 
 //用于过渡动画的view，只有是rootPopView的时候才不为nil
 @property (nonatomic, strong) UIView *transitionView;
@@ -29,17 +29,12 @@
 @property (nonatomic, strong) NSLayoutConstraint *dataView_h;
 @property (nonatomic, strong) NSLayoutConstraint *topViewContainer_h;
 
-//默认视图
-@property (nonatomic, weak) UILabel *titleLabel;
-@property (nonatomic, weak) UIButton *leftTopBarButton;
-@property (nonatomic, weak) UIButton *rightTopBarButton;
-
 ///当只有是rootPopView的时候，该属性才不为nil
-@property (nonatomic, strong) NSMutableArray<EKBottomPopView *> *popViews;
-@property (nonatomic, weak) EKBottomPopView *rootPopView;
+@property (nonatomic, strong) NSMutableArray<EKPopView *> *popViews;
+@property (nonatomic, weak) EKPopView *rootPopView;
 @end
 
-@implementation EKBottomPopView
+@implementation EKPopView
 
 #pragma mark - life cycle
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -66,9 +61,14 @@
 }
 
 - (void)showInView:(UIView *)view {
+    [self showInView:view fromDirection:EKPopViewDirectionBottom];
+}
+
+- (void)showInView:(UIView *)view fromDirection:(EKPopViewDirection)direction {
     if (view == nil) {
         return;
     }
+    self.direction = direction;
     self.popViews = @[self].mutableCopy;
     self.rootPopView = self;
     [self initShowView];
@@ -98,12 +98,12 @@
     [self layoutIfNeeded];
     [UIView animateWithDuration:0.2 animations:^{
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
-        self.animate_layout.constant = contentHeight;
+        self.animate_layout.constant = self.direction == EKPopViewDirectionBottom ? contentHeight:-contentHeight;
         [self layoutIfNeeded];
     }];
 }
 
-- (void)pushView:(EKBottomPopView *)view {
+- (void)pushView:(EKPopView *)view {
     view.rootPopView = self.rootPopView;
     [self.rootPopView.popViews addObject:view];
     view.dataView_h.constant = self.rootPopView.dataView_h.constant;
@@ -119,12 +119,12 @@
     [self beginTransitionWithAnimateView:transitionView isPushed:YES];
 }
 
-- (EKBottomPopView *)popToPreviousView {
-    EKBottomPopView *root = self.rootPopView;
+- (EKPopView *)popToPreviousView {
+    EKPopView *root = self.rootPopView;
     if (root.popViews.count <= 1) {
         return nil;
     }
-    EKBottomPopView *view = [root.popViews lastObject];
+    EKPopView *view = [root.popViews lastObject];
     [view.contentView removeFromSuperview];
     [root.popViews removeLastObject];
     
@@ -174,15 +174,17 @@
     [_contentView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_contentView]|" options:0 metrics:nil views:views]];
     
     self.contentView_h = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
-    self.animate_layout = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.container attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutAttribute selfLayout = self.direction == EKPopViewDirectionBottom ? NSLayoutAttributeBottom : NSLayoutAttributeTop;
+    NSLayoutAttribute containerLayout = self.direction == EKPopViewDirectionBottom ? NSLayoutAttributeTop : NSLayoutAttributeBottom;
+    self.animate_layout = [NSLayoutConstraint constraintWithItem:self attribute:selfLayout relatedBy:NSLayoutRelationEqual toItem:self.container attribute:containerLayout multiplier:1 constant:0];
     [self addConstraints:@[self.animate_layout]];
     [self.contentView addConstraint:self.contentView_h];
 }
 
 - (void)setInterface {
     //const
-    _topViewHeight = 44.f;
-    _bottomViewHeight = 0;
+    _topViewHeight = 0.f;
+    _bottomViewHeight = 0.f;
     _dynamticDataViewMinimumHeight = 0;
     _maxContentHeight = [UIScreen mainScreen].bounds.size.height/2.f;
     _dynamticDataViewHeight = -1;
@@ -221,46 +223,6 @@
     [self.contentView addConstraints:@[self.bottomViewContainer_h,self.dataView_h]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_topViewContainer][_separateLine(lineHeight)][_dataViewConntainer][_bottomViewContainer]" options:0 metrics:metrics views:views]];
-    
-    //set defalut dataView
-    self.dataView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView = (UITableView *)self.dataView;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorInset = UIEdgeInsetsZero;
-    
-    //set defalut topView
-    UIView *topView = [[UIView alloc] init];
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    titleLabel.textColor = [UIColor grayColor];
-    titleLabel.font = [UIFont systemFontOfSize:14];
-    self.titleLabel = titleLabel;
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [rightButton setTitle:@"确定" forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    self.rightTopBarButton = rightButton;
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [leftButton setTitle:@"取消" forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    [leftButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    self.leftTopBarButton = leftButton;
-    [topView addSubview:self.leftTopBarButton];
-    [topView addSubview:self.titleLabel];
-    [topView addSubview:self.rightTopBarButton];
-    self.topView = topView;
-    //layout
-    NSDictionary *topSubViews = NSDictionaryOfVariableBindings(titleLabel,leftButton,rightButton);
-    [titleLabel.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[titleLabel]|" options:0 metrics:nil views:topSubViews]];
-    [titleLabel.superview addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel.superview attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-    
-    [leftButton.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[leftButton]|" options:0 metrics:nil views:topSubViews]];
-    [leftButton.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[leftButton(>=44)]" options:0 metrics:nil views:topSubViews]];
-    
-    [rightButton.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[rightButton]|" options:0 metrics:nil views:topSubViews]];
-    [rightButton.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[rightButton(>=44)]-15-|" options:0 metrics:nil views:topSubViews]];
 }
 
 #pragma mark - transition animate
