@@ -87,7 +87,7 @@
     [self.popView dismiss];
 }
 
-- (void)ekBottomPopViewClickOnMaskView:(EKPopView *)view {
+- (void)ekPopViewClickOnMaskView:(EKPopView *)view {
     [view dismiss];
 }
 

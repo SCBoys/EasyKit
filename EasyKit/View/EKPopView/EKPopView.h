@@ -17,7 +17,7 @@ typedef enum : NSUInteger {
 @protocol EKPopViewDelegate <NSObject>
 @optional
 //遮罩层视图点击事件
-- (void)ekBottomPopViewClickOnMaskView:(EKPopView *)view;
+- (void)ekPopViewClickOnMaskView:(EKPopView *)view;
 @end
 @interface EKPopView : UIControl
 

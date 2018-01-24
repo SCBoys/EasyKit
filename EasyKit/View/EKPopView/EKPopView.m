@@ -49,8 +49,8 @@
 
 #pragma mark - event response
 - (void)tapOnMaskView:(id)sender {
-    if ([self.popViewDelegate respondsToSelector:@selector(ekBottomPopViewClickOnMaskView:)]) {
-        [self.popViewDelegate ekBottomPopViewClickOnMaskView:self];
+    if ([self.popViewDelegate respondsToSelector:@selector(ekPopViewClickOnMaskView:)]) {
+        [self.popViewDelegate ekPopViewClickOnMaskView:self];
     }
 } 
 
