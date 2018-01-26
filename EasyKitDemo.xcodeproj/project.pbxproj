@@ -36,6 +36,7 @@
 		8FAF35891FFE167E00E25086 /* UIActionSheet+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */; };
 		8FAF358A1FFE167E00E25086 /* EKAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35841FFE167E00E25086 /* EKAlertAction.m */; };
 		8FAF358B1FFE167E00E25086 /* EKAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35861FFE167E00E25086 /* EKAlertView.m */; };
+		8FE1CEFC201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE1CEFA201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		8FAF35851FFE167E00E25086 /* UIActionSheet+EKBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+EKBlock.h"; sourceTree = "<group>"; };
 		8FAF35861FFE167E00E25086 /* EKAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKAlertView.m; sourceTree = "<group>"; };
 		8FAF35871FFE167E00E25086 /* EKAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKAlertView.h; sourceTree = "<group>"; };
+		8FE1CEFA201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+EKExtension.m"; sourceTree = "<group>"; };
+		8FE1CEFB201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+EKExtension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +209,8 @@
 		8F4C6A041FBD7AB80011DFA9 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8FE1CEFB201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.h */,
+				8FE1CEFA201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m */,
 				8F4C6A1C1FBEC9820011DFA9 /* UIImage+EKExtension.h */,
 				8F4C6A1D1FBEC9820011DFA9 /* UIImage+EKExtension.m */,
 				8F4C6A201FBECECE0011DFA9 /* UIView+EKExtension.h */,
@@ -434,6 +439,7 @@
 				8FAF35881FFE167E00E25086 /* UIAlertView+EKBlock.m in Sources */,
 				8F860CDD1FC81D3100F73DF9 /* EKPopView.m in Sources */,
 				8F4C6A221FBECECE0011DFA9 /* UIView+EKExtension.m in Sources */,
+				8FE1CEFC201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m in Sources */,
 				8F4C69E81FBD76710011DFA9 /* ViewController.m in Sources */,
 				8FAF358B1FFE167E00E25086 /* EKAlertView.m in Sources */,
 				8F4C6A1E1FBEC9820011DFA9 /* UIImage+EKExtension.m in Sources */,
