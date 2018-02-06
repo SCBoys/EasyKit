@@ -31,6 +31,7 @@
 		8F4C6A251FBED4730011DFA9 /* NSArray+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A241FBED4730011DFA9 /* NSArray+EKExtension.m */; };
 		8F4C6A2D1FBED5ED0011DFA9 /* EasyKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A2C1FBED5ED0011DFA9 /* EasyKitDemoTests.m */; };
 		8F6FF62A201183B300DAB7B1 /* UIImageView+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6FF629201183B300DAB7B1 /* UIImageView+EKExtension.m */; };
+		8F7C8E50202941CE001F28F2 /* EKKeyboardHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C8E4E202941CE001F28F2 /* EKKeyboardHelp.m */; };
 		8F860CDD1FC81D3100F73DF9 /* EKPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F860CDB1FC81D3100F73DF9 /* EKPopView.m */; };
 		8FAF35881FFE167E00E25086 /* UIAlertView+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35801FFE167D00E25086 /* UIAlertView+EKBlock.m */; };
 		8FAF35891FFE167E00E25086 /* UIActionSheet+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */; };
@@ -101,6 +102,8 @@
 		8F4C6A2E1FBED5ED0011DFA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F6FF628201183B300DAB7B1 /* UIImageView+EKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+EKExtension.h"; sourceTree = "<group>"; };
 		8F6FF629201183B300DAB7B1 /* UIImageView+EKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+EKExtension.m"; sourceTree = "<group>"; };
+		8F7C8E4E202941CE001F28F2 /* EKKeyboardHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKKeyboardHelp.m; sourceTree = "<group>"; };
+		8F7C8E4F202941CE001F28F2 /* EKKeyboardHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKKeyboardHelp.h; sourceTree = "<group>"; };
 		8F860CDB1FC81D3100F73DF9 /* EKPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKPopView.m; sourceTree = "<group>"; };
 		8F860CDC1FC81D3100F73DF9 /* EKPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKPopView.h; sourceTree = "<group>"; };
 		8FAF35801FFE167D00E25086 /* UIAlertView+EKBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+EKBlock.m"; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 		8F4C69F91FBD76D40011DFA9 /* EasyKit */ = {
 			isa = PBXGroup;
 			children = (
+				8F7C8E4C202941CE001F28F2 /* Unit */,
 				8F4C6A1F1FBECD910011DFA9 /* EasyKit.h */,
 				8F4C6A041FBD7AB80011DFA9 /* Category */,
 				8F4C69FA1FBD78660011DFA9 /* View */,
@@ -251,6 +255,23 @@
 				8F4C6A2E1FBED5ED0011DFA9 /* Info.plist */,
 			);
 			path = EasyKitDemoTests;
+			sourceTree = "<group>";
+		};
+		8F7C8E4C202941CE001F28F2 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				8F7C8E4D202941CE001F28F2 /* EKKeyboardHelp */,
+			);
+			path = Unit;
+			sourceTree = "<group>";
+		};
+		8F7C8E4D202941CE001F28F2 /* EKKeyboardHelp */ = {
+			isa = PBXGroup;
+			children = (
+				8F7C8E4F202941CE001F28F2 /* EKKeyboardHelp.h */,
+				8F7C8E4E202941CE001F28F2 /* EKKeyboardHelp.m */,
+			);
+			path = EKKeyboardHelp;
 			sourceTree = "<group>";
 		};
 		8F860CD41FC81D2400F73DF9 /* EKPopView */ = {
@@ -450,6 +471,7 @@
 				8F4C69E51FBD76710011DFA9 /* AppDelegate.m in Sources */,
 				8F4C6A111FBEC4B30011DFA9 /* EKTableViewController.m in Sources */,
 				8FAF35891FFE167E00E25086 /* UIActionSheet+EKBlock.m in Sources */,
+				8F7C8E50202941CE001F28F2 /* EKKeyboardHelp.m in Sources */,
 				8FAF358A1FFE167E00E25086 /* EKAlertAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
