@@ -7,9 +7,10 @@
 //
 
 #import "EKTextField.h"
+#import "NSString+EKExtension.h"
 
 @interface EKTextField()<UITextFieldDelegate>
-@property (nonatomic, assign) BOOL textChangeByPaste;
+@property (nonatomic, assign) BOOL textChangeByPasteOrType;
 
 @property (nonatomic, copy) NSString *currentText;
 @end
@@ -31,7 +32,7 @@
 
 - (void)initObject {
     self.isNumberValue = NO;
-    self.textChangeByPaste = YES;
+    self.textChangeByPasteOrType = YES;
     self.delegate = self;
     [self addTarget:self action:@selector(tf_textDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
@@ -53,7 +54,11 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    self.textChangeByPaste = NO;
+    self.textChangeByPasteOrType = NO;
+    
+    if (self.disableEmoji && [string ek_containsEmoji]) {
+        return NO;
+    }
     
     if (string.length < range.length) {
         //删除字符
@@ -115,13 +120,18 @@
 
 #pragma mark - event response
 - (void)tf_textDidChange:(id)sender {
-    if (!self.textChangeByPaste) {
-        self.textChangeByPaste = YES;
+    if (!self.textChangeByPasteOrType) {
+        self.textChangeByPasteOrType = YES;
         [self resetText];
         return;
     }
     
     if (![self validateLength:self.text]) {
+        self.text = self.currentText;
+        return;
+    }
+    
+    if (self.disableEmoji && [self.text ek_containsEmoji]) {
         self.text = self.currentText;
         return;
     }
@@ -248,6 +258,7 @@
 - (BOOL)isDecimalMode {
     return self.keyboardType == UIKeyboardTypeDecimalPad;
 }
+
 
 #pragma mark - getters and setters
 

@@ -34,4 +34,7 @@
 // 小数键盘的时候，用这个取值
 @property (nonatomic, copy, readonly) NSString *currentText;
 
+// 禁用emoji表情输入， 默认NO
+@property (nonatomic, assign) BOOL disableEmoji;
+
 @end

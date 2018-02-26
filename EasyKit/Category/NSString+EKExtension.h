@@ -17,4 +17,12 @@
  */
 - (BOOL)ek_isNotEmptyString;
 
+
+/**
+ check string is contain emoji
+
+ @return yes, contained
+ */
+- (BOOL)ek_containsEmoji;
+
 @end
