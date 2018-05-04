@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "EKPopView.h"
+#import "TestModel.h"
+#import "NSObject+HookDealloc.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,EKPopViewDelegate>
 @property (nonatomic, weak) EKPopView *popView;
@@ -18,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.dataSource = @[@"1",@"2",@"3",@"4"];

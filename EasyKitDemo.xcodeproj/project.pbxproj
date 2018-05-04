@@ -33,6 +33,7 @@
 		8F6FF62A201183B300DAB7B1 /* UIImageView+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6FF629201183B300DAB7B1 /* UIImageView+EKExtension.m */; };
 		8F7C8E50202941CE001F28F2 /* EKKeyboardHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C8E4E202941CE001F28F2 /* EKKeyboardHelp.m */; };
 		8F860CDD1FC81D3100F73DF9 /* EKPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F860CDB1FC81D3100F73DF9 /* EKPopView.m */; };
+		8FA5FA7B209BF0C500C2BB06 /* NSObject+HookDealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA5FA7A209BF0C500C2BB06 /* NSObject+HookDealloc.m */; };
 		8FAF35881FFE167E00E25086 /* UIAlertView+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35801FFE167D00E25086 /* UIAlertView+EKBlock.m */; };
 		8FAF35891FFE167E00E25086 /* UIActionSheet+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */; };
 		8FAF358A1FFE167E00E25086 /* EKAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35841FFE167E00E25086 /* EKAlertAction.m */; };
@@ -106,6 +107,8 @@
 		8F7C8E4F202941CE001F28F2 /* EKKeyboardHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKKeyboardHelp.h; sourceTree = "<group>"; };
 		8F860CDB1FC81D3100F73DF9 /* EKPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKPopView.m; sourceTree = "<group>"; };
 		8F860CDC1FC81D3100F73DF9 /* EKPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKPopView.h; sourceTree = "<group>"; };
+		8FA5FA79209BF0C500C2BB06 /* NSObject+HookDealloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+HookDealloc.h"; sourceTree = "<group>"; };
+		8FA5FA7A209BF0C500C2BB06 /* NSObject+HookDealloc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HookDealloc.m"; sourceTree = "<group>"; };
 		8FAF35801FFE167D00E25086 /* UIAlertView+EKBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+EKBlock.m"; sourceTree = "<group>"; };
 		8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+EKBlock.m"; sourceTree = "<group>"; };
 		8FAF35821FFE167E00E25086 /* EKAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKAlertAction.h; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 				8F4C6A241FBED4730011DFA9 /* NSArray+EKExtension.m */,
 				52A911C72010988100A86A0E /* NSString+EKExtension.h */,
 				52A911C82010988100A86A0E /* NSString+EKExtension.m */,
+				8FA5FA79209BF0C500C2BB06 /* NSObject+HookDealloc.h */,
+				8FA5FA7A209BF0C500C2BB06 /* NSObject+HookDealloc.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				8F4C6A251FBED4730011DFA9 /* NSArray+EKExtension.m in Sources */,
 				8FAF35881FFE167E00E25086 /* UIAlertView+EKBlock.m in Sources */,
 				8F860CDD1FC81D3100F73DF9 /* EKPopView.m in Sources */,
+				8FA5FA7B209BF0C500C2BB06 /* NSObject+HookDealloc.m in Sources */,
 				8F4C6A221FBECECE0011DFA9 /* UIView+EKExtension.m in Sources */,
 				8FE1CEFC201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m in Sources */,
 				8F4C69E81FBD76710011DFA9 /* ViewController.m in Sources */,
