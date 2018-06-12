@@ -13,6 +13,8 @@ typedef enum : NSUInteger {
     EKPopViewDirectionTop
 } EKPopViewDirection;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class EKPopView;
 @protocol EKPopViewDelegate <NSObject>
 @optional
@@ -21,7 +23,7 @@ typedef enum : NSUInteger {
 @end
 @interface EKPopView : UIControl
 
-@property (nonatomic, weak) id<EKPopViewDelegate> popViewDelegate;
+@property (nonatomic, weak, nullable) id<EKPopViewDelegate> popViewDelegate;
 //setting
 ///弹窗最大高度，默认高度是屏幕高度的1/2
 @property (nonatomic, assign) CGFloat maxContentHeight;
@@ -32,12 +34,12 @@ typedef enum : NSUInteger {
 
 //ui control
 ///默认nil,如果设置topView，需要设置topViewHeight
-@property (nonatomic, strong) UIView *topView;
+@property (nonatomic, strong, nullable) UIView *topView;
 @property (nonatomic, assign) CGFloat topViewHeight;
 ///数据视图，默认是tableView
-@property (nonatomic, strong) UIView *dataView;
+@property (nonatomic, strong, nullable) UIView *dataView;
 ///默认nil,如果设置bottomView，需要设置bottomViewHeight
-@property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong, nullable) UIView *bottomView;
 @property (nonatomic, assign) CGFloat bottomViewHeight;
 
 - (void)showInWindow;
@@ -53,3 +55,5 @@ typedef enum : NSUInteger {
 - (void)dismiss;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImage (EKExtension)
 
-+ (UIImage *)ek_imageWithColor:(UIColor*)color;
-+ (UIImage *)ek_imageWithColor:(UIColor*)color andSize:(CGSize)size;
++ (UIImage *)ek_imageWithColor:(UIColor *)color;
++ (UIImage *)ek_imageWithColor:(UIColor *)color andSize:(CGSize)size;
 /**
  生成图片
  
@@ -19,7 +21,7 @@
  @param size 尺寸
  @param cornerRaduis 圆角
  */
-+ (UIImage *)ek_imageWithColor:(UIColor*)color andSize:(CGSize)size andCornerRaduis:(CGFloat)cornerRaduis;
++ (UIImage *)ek_imageWithColor:(UIColor *)color andSize:(CGSize)size andCornerRaduis:(CGFloat)cornerRaduis;
 
 
 /**
@@ -70,3 +72,5 @@
 - (UIImage *)ek_addCornerRaduis:(CGSize)raduis;
 
 @end
+
+NS_ASSUME_NONNULL_END

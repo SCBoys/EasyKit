@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImageView (EKExtension)
 
 /**
@@ -20,3 +22,5 @@
 - (void)ek_setImage:(UIImage *)image byCornerRaduis:(CGFloat)cornerRaduis byViewSize:(CGSize)viewSize;
 
 @end
+
+NS_ASSUME_NONNULL_END

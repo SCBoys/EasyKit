@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSString (EKExtension)
 
 /**
@@ -26,3 +28,6 @@
 - (BOOL)ek_containsEmoji;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class EKTextField;
 @protocol EKTextFieldDelegate <NSObject>
 @optional
@@ -18,7 +20,7 @@
 @end
 @interface EKTextField : UITextField
 
-@property (nonatomic, weak) id<EKTextFieldDelegate> tf_delegate;
+@property (nonatomic, weak, nullable) id<EKTextFieldDelegate> tf_delegate;
 // 总长度限制  0表示不限制
 @property (nonatomic, assign) NSUInteger limitLength;
 // 数值限制， 0表示不限制 (该属性只对UIKeyboardTypeDecimalPad,UIKeyboardTypeNumberPad 有效)
@@ -38,3 +40,5 @@
 @property (nonatomic, assign) BOOL disableEmoji;
 
 @end
+
+NS_ASSUME_NONNULL_END

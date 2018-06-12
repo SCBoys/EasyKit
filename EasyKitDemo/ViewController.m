@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "EKPopView.h"
-#import "TestModel.h"
 #import "NSObject+HookDealloc.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,EKPopViewDelegate>

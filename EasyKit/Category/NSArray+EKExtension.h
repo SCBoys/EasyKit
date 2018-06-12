@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSArray (EKExtension)
 
 /**
  排序
  */
-- (NSArray *)ek_sortWithKeyPath:(NSString *)keyPath ascending:(BOOL)asc;
+- (NSArray *)ek_sortWithKeyPath:(nullable NSString *)keyPath ascending:(BOOL)asc;
 
 /**
  分组， 支持字符串和值类型
@@ -28,7 +30,9 @@
  @param keyPath keyPath
  @param value NSString 或者 NSNumber
  */
-- (NSArray *)ek_filterWithKeyPath:(NSString *)keyPath withValue:(id)value;
+- (nullable NSArray *)ek_filterWithKeyPath:(NSString *)keyPath withValue:(id)value;
 
 
 @end
+
+NS_ASSUME_NONNULL_END
