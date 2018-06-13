@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface EKKeyboardHelp : NSObject
 
 
@@ -21,3 +23,5 @@
 + (CGFloat)overlappingHeightByView:(UIView *)adjustView keyboardFrameChangedNotification:(NSNotification *)notification;
 
 @end
+
+NS_ASSUME_NONNULL_END
