@@ -56,12 +56,12 @@ const void *monitorKey = "monitorKey";
 
 @implementation NSObject (HookDealloc)
 
-- (void)addObserverWhenThisObjectDidDelloced:(void(^)(void))callback {
+- (void)ek_addObserverWhenThisObjectDidDelloced:(void(^)(void))callback {
     EKDellocMonitor *monitor = [[EKDellocMonitor alloc] initWithBlock:callback];
     objc_setAssociatedObject(self, monitorKey, monitor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)addObserverWhenThisObjectDidDelloced:(id)observer selector:(SEL)selector {
+- (void)ek_addObserverWhenThisObjectDidDelloced:(id)observer selector:(SEL)selector {
     EKDellocMonitor *monitor = [[EKDellocMonitor alloc] initWithObserver:observer selector:selector];
     objc_setAssociatedObject(self, monitorKey, monitor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

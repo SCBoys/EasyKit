@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param callback 当改对象被释放的时候，调用。
  */
-- (void)addObserverWhenThisObjectDidDelloced:(void(^)(void))callback;
+- (void)ek_addObserverWhenThisObjectDidDelloced:(void(^)(void))callback;
 
 
 /**
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param observer observer不能为当前对象，否则无法回调，应该当前对象已被释放
  @param selector 方法回调
  */
-- (void)addObserverWhenThisObjectDidDelloced:(id)observer selector:(SEL)selector;
+- (void)ek_addObserverWhenThisObjectDidDelloced:(id)observer selector:(SEL)selector;
 
 @end
 
