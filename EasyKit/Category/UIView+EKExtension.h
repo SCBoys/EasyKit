@@ -12,7 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (EKExtension)
 
-- (UIViewController *)ek_viewController;
+- (nullable UIViewController *)ek_viewController;
+
+- (void)ek_showIndicatorView;
+
+- (void)ek_dismissIndicatorView;
 
 @end
 

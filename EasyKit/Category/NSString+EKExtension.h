@@ -6,7 +6,7 @@
 //  Copyright © 2018年 EK. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,6 +26,18 @@ NS_ASSUME_NONNULL_BEGIN
  @return yes, contained
  */
 - (BOOL)ek_containsEmoji;
+
+@end
+
+@interface NSString (CalculateSize)
+
+- (CGSize)ek_textSizeWithFont:(UIFont *)font;
+
+- (CGSize)ek_textSizeWithFont:(UIFont *)font
+                numberOfLines:(NSInteger)numberOfLines
+                  lineSpacing:(CGFloat)lineSpacing
+             constrainedWidth:(CGFloat)constrainedWidth
+             isLimitedToLines:(BOOL *)isLimitedToLines;
 
 @end
 
