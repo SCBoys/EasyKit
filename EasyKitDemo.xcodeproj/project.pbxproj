@@ -77,7 +77,7 @@
 		8FAF35891FFE167E00E25086 /* UIActionSheet+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */; };
 		8FAF358A1FFE167E00E25086 /* EKAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35841FFE167E00E25086 /* EKAlertAction.m */; };
 		8FAF358B1FFE167E00E25086 /* EKAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35861FFE167E00E25086 /* EKAlertView.m */; };
-		8FD368912160C2F1000539EF /* UIViewController+EKExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD3688F2160C2F1000539EF /* UIViewController+EKExtension.h */; };
+		8FD368912160C2F1000539EF /* UIViewController+EKExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD3688F2160C2F1000539EF /* UIViewController+EKExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD368922160C2F1000539EF /* UIViewController+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD368902160C2F1000539EF /* UIViewController+EKExtension.m */; };
 		8FE1CEFC201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE1CEFA201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m */; };
 /* End PBXBuildFile section */
@@ -370,10 +370,10 @@
 				8F76B2C820CFC74300744434 /* EKAlertView.h in Headers */,
 				8F76B2C920CFC74300744434 /* EKAlertAction.h in Headers */,
 				8F76B2CA20CFC74300744434 /* UIAlertView+EKBlock.h in Headers */,
-				8FD368912160C2F1000539EF /* UIViewController+EKExtension.h in Headers */,
 				8F76B2CB20CFC74300744434 /* UIActionSheet+EKBlock.h in Headers */,
 				8F76B2CC20CFC74300744434 /* EKPopView.h in Headers */,
 				8F76B2CD20CFC74300744434 /* EKTableViewController.h in Headers */,
+				8FD368912160C2F1000539EF /* UIViewController+EKExtension.h in Headers */,
 				8F76B2CE20CFC74300744434 /* EKTextField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
