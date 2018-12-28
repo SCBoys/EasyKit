@@ -35,12 +35,8 @@
     }
     _views = views;
     NSMutableArray *superviews = @[].mutableCopy;
-    NSArray<UIColor *> *colors = @[UIColor.greenColor,UIColor.purpleColor,UIColor.redColor];
-    NSInteger cout = 0;
     for (UIView *view in _views) {
         UIView *superView = [[UIView alloc] init];
-        superView.backgroundColor = colors[cout];
-        cout++;
         superView.translatesAutoresizingMaskIntoConstraints = NO;
         view.translatesAutoresizingMaskIntoConstraints = NO;
         [superView addSubview:view];
