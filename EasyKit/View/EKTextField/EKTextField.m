@@ -38,6 +38,30 @@
 }
 
 #pragma mark - Delegate & DataSource
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldShouldBeginEditing::)]) {
+        return [self.tf_delegate ekTextFieldShouldBeginEditing:self];
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldShouldEndEditing:)]) {
+        return [self.tf_delegate ekTextFieldShouldEndEditing:self];
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldShouldReturn:)]) {
+        return [self.tf_delegate ekTextFieldShouldReturn:self];
+    } else {
+        return YES;
+    }
+}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldDidBeginEditing:)]) {
         [self.tf_delegate ekTextFieldDidBeginEditing:self];

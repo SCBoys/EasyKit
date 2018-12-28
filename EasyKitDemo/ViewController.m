@@ -7,12 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "EKPopView.h"
-#import "NSObject+HookDealloc.h"
+#import "EKTextField.h"
+#import "UIView+EKExtension.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,EKPopViewDelegate>
-@property (nonatomic, weak) EKPopView *popView;
-@property (nonatomic, copy) NSArray<NSString *> *dataSource;
+@interface ViewController ()<EKTextFieldDelegate,EKKeyborderHook>
+@property (nonatomic, strong) EKTextField *textfield1;
+@property (nonatomic, strong) EKTextField *textfield2;
+@property (nonatomic, strong) UIView *container;
 @end
 
 @implementation ViewController
@@ -22,75 +23,41 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataSource = @[@"1",@"2",@"3",@"4"];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [button setTitle:@"显示" forState: UIControlStateNormal];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    CGSize size = self.view.bounds.size;
+    _container = [[UIView alloc] initWithFrame:(CGRect){20,size.height - 110 - 200,375,110}];
+    _container.backgroundColor = UIColor.yellowColor;
+    [_container ek_addKeyBorderHooker:self cha:0];
+    [self.view addSubview:_container];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(button);
-    [button.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-50-[button(44)]" options:0 metrics:nil views:views]];
-    [button.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button(100)]" options:0 metrics:nil views:views]];
-    [button.superview addConstraint:[NSLayoutConstraint constraintWithItem:button.superview attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:button attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-}
-
-- (void)buttonClick:(id)sender {
-    NSLog(@"点击显示按钮");
+    _textfield1 = [[EKTextField alloc] initWithFrame:(CGRect){10,10,300,44}];
+    _textfield1.backgroundColor = UIColor.greenColor;
+//    _textfield1.autoAdjustKeyboard = YES;
+    _textfield1.placeholder = @"输入手机号";
+    _textfield1.tf_delegate = self;
+//    _textfield1.cha = 30;
+    [_container addSubview:_textfield1];
     
-    EKPopView *aPopView = [[EKPopView alloc] init];
-    UIView *toolBar = [[UIView alloc] init];
-    toolBar.backgroundColor = [UIColor redColor];
-    aPopView.bottomViewHeight = 100;
-    aPopView.bottomView = toolBar;
     
-    aPopView.popViewDelegate = self;
-    
-    //set dataView
-    UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    aPopView.dataView = table;
-    table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    table.separatorInset = UIEdgeInsetsZero;
-    table.delegate = self;
-    table.dataSource = self;
-    
-    self.popView = aPopView;
-    [aPopView showInView:self.view fromDirection:EKPopViewDirectionBottom];
+    _textfield2 = [[EKTextField alloc] initWithFrame:(CGRect){10,64,300,44}];
+    _textfield2.backgroundColor = UIColor.greenColor;
+//    _textfield2.autoAdjustKeyboard = YES;
+    _textfield2.placeholder = @"输入验证码";
+    _textfield2.tf_delegate = self;
+//    _textfield2.cha = 30;
+    [_container addSubview:_textfield2];
 }
 
-- (void)cancel {
-    NSLog(@"cancel");
-    [self.popView dismiss];
+- (void)ekKeyborderHookDidMaskByView:(UIView *)view offset:(CGFloat)offset {
+    _container.center = CGPointMake(_container.center.x, _container.center.y + offset);
 }
 
-- (void)ok {
-    NSLog(@"ok");
-    [self.popView dismiss];
+- (BOOL)ekTextFieldShouldReturn:(EKTextField *)textfield {
+    [textfield resignFirstResponder];
+    return YES;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *ider = @"cell";
-    NSString *item = self.dataSource[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ider];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ider];
-    }
-    cell.textLabel.text = item;
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"did selected");
-    [self.popView dismiss];
-}
-
-- (void)ekPopViewClickOnMaskView:(EKPopView *)view {
-    [view dismiss];
-}
+//- (void)ekTextFieldKeyboardFrameChange:(EKTextField *)textfield shouldMoveOffset:(CGFloat)offset {
+//    _container.center = CGPointMake(_container.center.x, _container.center.y + offset);
+//}
 
 @end

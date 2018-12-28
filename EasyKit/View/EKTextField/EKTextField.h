@@ -13,7 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @class EKTextField;
 @protocol EKTextFieldDelegate <NSObject>
 @optional
-- (BOOL)ekTextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+- (BOOL)ekTextFieldShouldBeginEditing:(EKTextField *)textField;
+- (BOOL)ekTextFieldShouldEndEditing:(EKTextField *)textField;
+- (BOOL)ekTextFieldShouldReturn:(EKTextField *)textfield;
+- (BOOL)ekTextField:(EKTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 - (void)ekTextFieldDidBeginEditing:(EKTextField *)textfield;
 - (void)ekTextFieldDidEndEditing:(EKTextField *)textfield;
 - (void)ekTextFieldDidChanged:(EKTextField *)textfield;

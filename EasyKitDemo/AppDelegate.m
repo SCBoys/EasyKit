@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    ViewController *controller = [ViewController new];
+    ViewController *controller = [[ViewController alloc] init];
     self.window = [[UIWindow alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = controller;
