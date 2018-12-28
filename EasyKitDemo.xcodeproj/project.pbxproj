@@ -25,6 +25,8 @@
 		681EC5EB21D60D3300C43FCF /* NSString+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A911C82010988100A86A0E /* NSString+EKExtension.m */; };
 		681EC5EC21D614A400C43FCF /* UIView+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A211FBECECE0011DFA9 /* UIView+EKExtension.m */; };
 		684953EA21D6058E00D0DE92 /* EKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A101FBEC4B30011DFA9 /* EKTextField.m */; };
+		687E381421D6509400970DB4 /* EKStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = 687E381221D6509400970DB4 /* EKStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		687E381521D6509400970DB4 /* EKStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E381321D6509400970DB4 /* EKStackView.m */; };
 		8F4C69E51FBD76710011DFA9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C69E41FBD76710011DFA9 /* AppDelegate.m */; };
 		8F4C69E81FBD76710011DFA9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C69E71FBD76710011DFA9 /* ViewController.m */; };
 		8F4C69ED1FBD76710011DFA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F4C69EC1FBD76710011DFA9 /* Assets.xcassets */; };
@@ -63,16 +65,8 @@
 		8F76B2CC20CFC74300744434 /* EKPopView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F860CDC1FC81D3100F73DF9 /* EKPopView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8F76B2CD20CFC74300744434 /* EKTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F4C6A0C1FBEC4B30011DFA9 /* EKTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8F76B2CE20CFC74300744434 /* EKTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F4C6A0F1FBEC4B30011DFA9 /* EKTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8F7C8E50202941CE001F28F2 /* EKKeyboardHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C8E4E202941CE001F28F2 /* EKKeyboardHelp.m */; };
-		8F860CDD1FC81D3100F73DF9 /* EKPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F860CDB1FC81D3100F73DF9 /* EKPopView.m */; };
-		8FA5FA7B209BF0C500C2BB06 /* NSObject+HookDealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA5FA7A209BF0C500C2BB06 /* NSObject+HookDealloc.m */; };
-		8FAF35881FFE167E00E25086 /* UIAlertView+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35801FFE167D00E25086 /* UIAlertView+EKBlock.m */; };
-		8FAF35891FFE167E00E25086 /* UIActionSheet+EKBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35811FFE167D00E25086 /* UIActionSheet+EKBlock.m */; };
-		8FAF358A1FFE167E00E25086 /* EKAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35841FFE167E00E25086 /* EKAlertAction.m */; };
-		8FAF358B1FFE167E00E25086 /* EKAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAF35861FFE167E00E25086 /* EKAlertView.m */; };
 		8FD368912160C2F1000539EF /* UIViewController+EKExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD3688F2160C2F1000539EF /* UIViewController+EKExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD368922160C2F1000539EF /* UIViewController+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD368902160C2F1000539EF /* UIViewController+EKExtension.m */; };
-		8FE1CEFC201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE1CEFA201B02B700BAA6C7 /* NSMutableAttributedString+EKExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +83,8 @@
 		52A911C72010988100A86A0E /* NSString+EKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+EKExtension.h"; sourceTree = "<group>"; };
 		52A911C82010988100A86A0E /* NSString+EKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+EKExtension.m"; sourceTree = "<group>"; };
 		52A911CA2010994A00A86A0E /* NSStringExtensionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtensionTests.m; sourceTree = "<group>"; };
+		687E381221D6509400970DB4 /* EKStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKStackView.h; sourceTree = "<group>"; };
+		687E381321D6509400970DB4 /* EKStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKStackView.m; sourceTree = "<group>"; };
 		8F3058B120CFA6F9001A776A /* UIColor+EKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EKExtension.h"; sourceTree = "<group>"; };
 		8F3058B220CFA6F9001A776A /* UIColor+EKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EKExtension.m"; sourceTree = "<group>"; };
 		8F4C69E01FBD76710011DFA9 /* EasyKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +158,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		687E381121D6508300970DB4 /* EKStackView */ = {
+			isa = PBXGroup;
+			children = (
+				687E381221D6509400970DB4 /* EKStackView.h */,
+				687E381321D6509400970DB4 /* EKStackView.m */,
+			);
+			path = EKStackView;
+			sourceTree = "<group>";
+		};
 		8F4C69D71FBD76710011DFA9 = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +215,7 @@
 		8F4C69FA1FBD78660011DFA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				687E381121D6508300970DB4 /* EKStackView */,
 				8FAF357F1FFE167900E25086 /* EKAlertView */,
 				8F860CD41FC81D2400F73DF9 /* EKPopView */,
 				8F4C6A0B1FBEC4B30011DFA9 /* EKTableViewController */,
@@ -343,6 +349,7 @@
 				8F76B2CA20CFC74300744434 /* UIAlertView+EKBlock.h in Headers */,
 				8F76B2CB20CFC74300744434 /* UIActionSheet+EKBlock.h in Headers */,
 				8F76B2CC20CFC74300744434 /* EKPopView.h in Headers */,
+				687E381421D6509400970DB4 /* EKStackView.h in Headers */,
 				8F76B2CD20CFC74300744434 /* EKTableViewController.h in Headers */,
 				8FD368912160C2F1000539EF /* UIViewController+EKExtension.h in Headers */,
 				8F76B2CE20CFC74300744434 /* EKTextField.h in Headers */,
@@ -492,7 +499,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Sets the target folders and the final framework product.\n# 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME\n#FMK_NAME = \"MyFramework\"\nFMK_NAME='EasyKit'\n\n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=${SRCROOT}/Frameworks/${FMK_NAME}.framework\n\n## Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n\n# -configuration ${CONFIGURATION}\n# Clean and Building both architectures.\n# -arch armv7 armv7s arm64 i386 x86_64\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos -arch armv7 -arch arm64  clean build\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator -arch x86_64 -arch i386 clean build\n\n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n\nmkdir -p \"${INSTALL_DIR}\"\n\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\n\n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\n\nrm -r \"${WRK_DIR}\"\n\nopen ${SRCROOT}";
+			shellScript = "# Sets the target folders and the final framework product.\n# 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME\n#FMK_NAME = \"MyFramework\"\nFMK_NAME='EasyKit'\n\n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=${SRCROOT}/Frameworks/${FMK_NAME}.framework\n\n## Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n\n# -configuration ${CONFIGURATION}\n# Clean and Building both architectures.\n# -arch armv7 armv7s arm64 i386 x86_64\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos -arch armv7 -arch arm64  clean build\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator -arch x86_64 -arch i386 clean build\n\n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n\nmkdir -p \"${INSTALL_DIR}\"\n\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\n\n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\n\nrm -r \"${WRK_DIR}\"\n\nopen ${SRCROOT}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -526,6 +533,7 @@
 				8F76B2A020CFBB5900744434 /* EKKeyboardHelp.m in Sources */,
 				8F76B2A220CFBB5900744434 /* NSMutableAttributedString+EKExtension.m in Sources */,
 				8F76B2A420CFBB5900744434 /* UIImage+EKExtension.m in Sources */,
+				687E381521D6509400970DB4 /* EKStackView.m in Sources */,
 				8F76B2A620CFBB5900744434 /* UIView+EKExtension.m in Sources */,
 				8F76B2A820CFBB5900744434 /* UIImageView+EKExtension.m in Sources */,
 				8F76B2AA20CFBB5900744434 /* NSArray+EKExtension.m in Sources */,

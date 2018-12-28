@@ -39,7 +39,7 @@
 
 #pragma mark - Delegate & DataSource
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldShouldBeginEditing::)]) {
+    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldShouldBeginEditing:)]) {
         return [self.tf_delegate ekTextFieldShouldBeginEditing:self];
     } else {
         return YES;
@@ -136,7 +136,7 @@
 
 - (BOOL)rhTextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([self.tf_delegate respondsToSelector:@selector(ekTextField:shouldChangeCharactersInRange:replacementString:)]) {
-        return [self.tf_delegate ekTextField:textField shouldChangeCharactersInRange:range replacementString:string];
+        return [self.tf_delegate ekTextField:(EKTextField *)textField shouldChangeCharactersInRange:range replacementString:string];
     } else {
         return YES;
     }
