@@ -18,7 +18,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _isHorizontal = YES;
+        _direction = EKStackViewDirectionHorizontal;
     }
     return self;
 }
@@ -53,7 +53,7 @@
     NSLayoutAttribute top;
     NSLayoutAttribute bottom;
     NSLayoutAttribute width;
-    if (_isHorizontal) {
+    if (self.direction == EKStackViewDirectionHorizontal) {
         leading = NSLayoutAttributeLeft;
         tailing = NSLayoutAttributeRight;
         top = NSLayoutAttributeTop;

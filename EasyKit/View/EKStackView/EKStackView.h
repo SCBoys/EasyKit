@@ -10,10 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    EKStackViewDirectionHorizontal,
+    EKStackViewDirectionVertical
+} EKStackViewDirection;
+
 @interface EKStackView : UIView
 
-//默认yes
-@property (nonatomic, assign) BOOL isHorizontal;
+//默认EKStackViewDirectionHorizontal
+@property (nonatomic, assign) EKStackViewDirection direction;
 @property (nonatomic, copy) NSArray<UIView *> *views;
 
 @end

@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		183735F821E6F07B00C6ED04 /* EKFlexWrapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 183735F621E6F07B00C6ED04 /* EKFlexWrapView.h */; };
+		183735F921E6F07B00C6ED04 /* EKFlexWrapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183735F721E6F07B00C6ED04 /* EKFlexWrapView.m */; };
 		52A911CB2010994A00A86A0E /* NSStringExtensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A911CA2010994A00A86A0E /* NSStringExtensionTests.m */; };
 		681EC5EB21D60D3300C43FCF /* NSString+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A911C82010988100A86A0E /* NSString+EKExtension.m */; };
 		681EC5EC21D614A400C43FCF /* UIView+EKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C6A211FBECECE0011DFA9 /* UIView+EKExtension.m */; };
@@ -80,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		183735F621E6F07B00C6ED04 /* EKFlexWrapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EKFlexWrapView.h; sourceTree = "<group>"; };
+		183735F721E6F07B00C6ED04 /* EKFlexWrapView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EKFlexWrapView.m; sourceTree = "<group>"; };
 		52A911C72010988100A86A0E /* NSString+EKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+EKExtension.h"; sourceTree = "<group>"; };
 		52A911C82010988100A86A0E /* NSString+EKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+EKExtension.m"; sourceTree = "<group>"; };
 		52A911CA2010994A00A86A0E /* NSStringExtensionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtensionTests.m; sourceTree = "<group>"; };
@@ -158,6 +162,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		183735F521E6F01F00C6ED04 /* EKFlexWrapView */ = {
+			isa = PBXGroup;
+			children = (
+				183735F621E6F07B00C6ED04 /* EKFlexWrapView.h */,
+				183735F721E6F07B00C6ED04 /* EKFlexWrapView.m */,
+			);
+			path = EKFlexWrapView;
+			sourceTree = "<group>";
+		};
 		687E381121D6508300970DB4 /* EKStackView */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +228,7 @@
 		8F4C69FA1FBD78660011DFA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				183735F521E6F01F00C6ED04 /* EKFlexWrapView */,
 				687E381121D6508300970DB4 /* EKStackView */,
 				8FAF357F1FFE167900E25086 /* EKAlertView */,
 				8F860CD41FC81D2400F73DF9 /* EKPopView */,
@@ -348,6 +362,7 @@
 				8F76B2C920CFC74300744434 /* EKAlertAction.h in Headers */,
 				8F76B2CA20CFC74300744434 /* UIAlertView+EKBlock.h in Headers */,
 				8F76B2CB20CFC74300744434 /* UIActionSheet+EKBlock.h in Headers */,
+				183735F821E6F07B00C6ED04 /* EKFlexWrapView.h in Headers */,
 				8F76B2CC20CFC74300744434 /* EKPopView.h in Headers */,
 				687E381421D6509400970DB4 /* EKStackView.h in Headers */,
 				8F76B2CD20CFC74300744434 /* EKTableViewController.h in Headers */,
@@ -530,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183735F921E6F07B00C6ED04 /* EKFlexWrapView.m in Sources */,
 				8F76B2A020CFBB5900744434 /* EKKeyboardHelp.m in Sources */,
 				8F76B2A220CFBB5900744434 /* NSMutableAttributedString+EKExtension.m in Sources */,
 				8F76B2A420CFBB5900744434 /* UIImage+EKExtension.m in Sources */,
