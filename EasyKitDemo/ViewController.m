@@ -7,57 +7,46 @@
 //
 
 #import "ViewController.h"
-#import "EKTextField.h"
-#import "UIView+EKExtension.h"
 
-@interface ViewController ()<EKTextFieldDelegate,EKKeyborderHook>
-@property (nonatomic, strong) EKTextField *textfield1;
-@property (nonatomic, strong) EKTextField *textfield2;
-@property (nonatomic, strong) UIView *container;
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) NSArray *dataSource;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.dataSource = @[@{@"title":@"EKFlexWrapViewDemo",@"cls":@"FlexWrapViewController"}];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    CGSize size = self.view.bounds.size;
-    _container = [[UIView alloc] initWithFrame:(CGRect){20,size.height - 110 - 200,375,110}];
-    _container.backgroundColor = UIColor.yellowColor;
-    [_container ek_addKeyBorderHooker:self cha:0];
-    [self.view addSubview:_container];
-    
-    _textfield1 = [[EKTextField alloc] initWithFrame:(CGRect){10,10,300,44}];
-    _textfield1.backgroundColor = UIColor.greenColor;
-//    _textfield1.autoAdjustKeyboard = YES;
-    _textfield1.placeholder = @"输入手机号";
-    _textfield1.tf_delegate = self;
-//    _textfield1.cha = 30;
-    [_container addSubview:_textfield1];
-    
-    
-    _textfield2 = [[EKTextField alloc] initWithFrame:(CGRect){10,64,300,44}];
-    _textfield2.backgroundColor = UIColor.greenColor;
-//    _textfield2.autoAdjustKeyboard = YES;
-    _textfield2.placeholder = @"输入验证码";
-    _textfield2.tf_delegate = self;
-//    _textfield2.cha = 30;
-    [_container addSubview:_textfield2];
+    [self.view addSubview:self.tableView];
+    self.tableView.frame = self.view.bounds;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = 50;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
-- (void)ekKeyborderHookDidMaskByView:(UIView *)view offset:(CGFloat)offset {
-    _container.center = CGPointMake(_container.center.x, _container.center.y + offset);
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataSource.count;
 }
 
-- (BOOL)ekTextFieldShouldReturn:(EKTextField *)textfield {
-    [textfield resignFirstResponder];
-    return YES;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *item = self.dataSource[indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.textLabel.text = item[@"title"];
+    return cell;
 }
 
-//- (void)ekTextFieldKeyboardFrameChange:(EKTextField *)textfield shouldMoveOffset:(CGFloat)offset {
-//    _container.center = CGPointMake(_container.center.x, _container.center.y + offset);
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *item = self.dataSource[indexPath.row];
+    NSString *title = item[@"title"];
+    NSString *cls = item[@"cls"];
+    UIViewController *vc = [[NSClassFromString(cls) alloc] init];
+    vc.title = title;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

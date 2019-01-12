@@ -9,19 +9,18 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class EKFlexWrapView;
-@protocol EKFlexWrapViewDelegate <NSObject>
-@required
-- (NSInteger)ekFlexWrapViewNumberOfView:(EKFlexWrapView *)view;
-- (UIView *)ekFlexWrapView:(EKFlexWrapView *)view viewAtIndex:(NSInteger)index;
-@optional
-//如果 - (UIView *)ekFlexWrapView:(EKFlexWrapView *)view viewAtIndex:(NSInteger)index; 中返回的view.frame设置了size就不需要再实现该方法了, 若实现该方法，则会覆盖前面的view 的frame.size
-- (CGSize)ekFlexWrapView:(EKFlexWrapView *)view viewSizeAtIndex:(NSInteger)index;
-@end
 
 @interface EKFlexWrapView : UIView
 
-@property(nonatomic, weak) id<EKFlexWrapViewDelegate> delegate;
+//默认10
+@property (nonatomic, assign) CGFloat rowSpace;
+//默认10
+@property (nonatomic, assign) CGFloat itemInnerSpace;
+///默认zero
+@property (nonatomic, assign) UIEdgeInsets contentInset;
+
+//视图需要实现sizeToFit函数来计算得出自身的size
+@property (nonatomic, copy) NSArray<UIView *> *itemViews;
 
 @end
 
