@@ -34,3 +34,4 @@ FOUNDATION_EXPORT const unsigned char EasyKitVersionString[];
 #import <EasyKit/EKTextField.h>
 #import <EasyKit/UIViewController+EKExtension.h>
 #import <EasyKit/EKStackView.h>
+#import <EasyKit/EKFlexWrapView.h>

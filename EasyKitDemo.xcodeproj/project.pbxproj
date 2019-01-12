@@ -29,7 +29,7 @@
 		687E381521D6509400970DB4 /* EKStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E381321D6509400970DB4 /* EKStackView.m */; };
 		68D8F07A21E9D98F00FB0E50 /* FlexWrapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F07921E9D98F00FB0E50 /* FlexWrapViewController.m */; };
 		68D8F07F21E9DE1600FB0E50 /* FlexTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F07E21E9DE1600FB0E50 /* FlexTagView.m */; };
-		68D8F08221E9E6FE00FB0E50 /* EKFlexWrapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 68D8F08021E9E6FE00FB0E50 /* EKFlexWrapView.h */; };
+		68D8F08221E9E6FE00FB0E50 /* EKFlexWrapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 68D8F08021E9E6FE00FB0E50 /* EKFlexWrapView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		68D8F08521E9E7FA00FB0E50 /* EKFlexWrapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F08121E9E6FE00FB0E50 /* EKFlexWrapView.m */; };
 		68D8F08621E9E88E00FB0E50 /* EKFlexWrapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F08121E9E6FE00FB0E50 /* EKFlexWrapView.m */; };
 		8F4C69E51FBD76710011DFA9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C69E41FBD76710011DFA9 /* AppDelegate.m */; };
@@ -389,11 +389,11 @@
 				8F76B2C920CFC74300744434 /* EKAlertAction.h in Headers */,
 				8F76B2CA20CFC74300744434 /* UIAlertView+EKBlock.h in Headers */,
 				8F76B2CB20CFC74300744434 /* UIActionSheet+EKBlock.h in Headers */,
-				68D8F08221E9E6FE00FB0E50 /* EKFlexWrapView.h in Headers */,
 				8F76B2CC20CFC74300744434 /* EKPopView.h in Headers */,
 				687E381421D6509400970DB4 /* EKStackView.h in Headers */,
 				8F76B2CD20CFC74300744434 /* EKTableViewController.h in Headers */,
 				8FD368912160C2F1000539EF /* UIViewController+EKExtension.h in Headers */,
+				68D8F08221E9E6FE00FB0E50 /* EKFlexWrapView.h in Headers */,
 				8F76B2CE20CFC74300744434 /* EKTextField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
