@@ -7,48 +7,63 @@
 //
 
 #import "FlexWrapViewController.h"
-#import "EKFlexWrapView.h"
-#import "FlexTagView.h"
 
-@interface FlexWrapViewController ()
-@property (nonatomic, strong) EKFlexWrapView *flexView;
-@property (nonatomic, copy) NSArray *data;
+#import "FlexTagView.h"
+#import "FlexViewCell.h"
+
+@interface FlexWrapViewController ()<UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) UITableView *tableView;
+//@property (nonatomic, strong) EKFlexWrapView *flexView;
+//@property (nonatomic, copy) NSArray *data;
 @end
 
 @implementation FlexWrapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.data = @[@"asd",@"asdasd",@"xzcawqweqwe",@"asdasd",@"asdasd",@"asdasd",@"asdasd"];
+//    self.data = @[@"asd",@"asdasd",@"xzcawqweqwe",@"asdasd",@"asdasd",@"asdasd",@"asdasd"];
 
     self.view.backgroundColor = [UIColor whiteColor];
-    self.flexView = [[EKFlexWrapView alloc] init];
-    self.flexView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
-    self.flexView.backgroundColor = [UIColor redColor];
+//    self.flexView = [[EKFlexWrapView alloc] init];
+//    self.flexView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+//    self.flexView.backgroundColor = [UIColor redColor];
+//    self.flexView.translatesAutoresizingMaskIntoConstraints = NO;
 //    self.flexView.delegate = self;
-    [self.view addSubview:_flexView];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.tableView.estimatedRowHeight = 40;
+    [self.tableView registerClass:[FlexViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.view addSubview:_tableView];
 
-    NSMutableArray *views = @[].mutableCopy;
-    for (NSString *item in self.data) {
-        FlexTagView *tagview = [[FlexTagView alloc] init];
-        tagview.titleLabel.text = item;
-        [views addObject:tagview];
-    }
-    self.flexView.itemViews = views;
+//    NSMutableArray *views = @[].mutableCopy;
+//    for (NSString *item in self.data) {
+//        FlexTagView *tagview = [[FlexTagView alloc] init];
+//        tagview.titleLabel.text = item;
+//        [views addObject:tagview];
+//    }
+//    self.flexView.itemViews = views;
     
-    self.flexView.frame = CGRectMake(0, 100, self.view.frame.size.width, 100);
+    NSDictionary *tviews = NSDictionaryOfVariableBindings(_tableView);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:0 metrics:nil views:tviews]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tableView]|" options:0 metrics:nil views:tviews]];
 }
 
-//- (NSInteger)ekFlexWrapViewNumberOfView:(EKFlexWrapView *)view {
-//    return self.data.count;
-//}
-//
-//- (UIView *)ekFlexWrapView:(EKFlexWrapView *)view viewAtIndex:(NSInteger)index {
-////    return expression
-//}
-//
-//- (CGSize)ekFlexWrapView:(EKFlexWrapView *)view viewSizeAtIndex:(NSInteger)index {
-//
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FlexViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    NSArray *data;
+    if (indexPath.row == 0) {
+        data = @[@"asd",@"asdasd",@"xzcawqweqwe",@"asdasd",@"asdasd",@"asdasd",@"asdasd",@"asdasd",@"asdasd",@"asdasd",@"asdasd"];
+    } else {
+        data = @[@"asd",@"asdasd",@"xzcawqweqwe",@"asdasd"];
+    }
+    [cell setItem:data];
+    return cell;
+}
 
 @end

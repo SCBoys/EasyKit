@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EKFlexWrapView : UIView
 
+///预设视图宽度，默认是-1,会崩溃，必须设置
+@property (nonatomic, assign) CGFloat preWidth;
 //默认10
 @property (nonatomic, assign) CGFloat rowSpace;
 //默认10
@@ -19,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///默认zero
 @property (nonatomic, assign) UIEdgeInsets contentInset;
 
-//视图需要实现sizeToFit函数来计算得出自身的size
+//视图必须实现sizeToFit函数来设置自身的frame.size，
 @property (nonatomic, copy) NSArray<UIView *> *itemViews;
 
 @end

@@ -32,6 +32,7 @@
 		68D8F08221E9E6FE00FB0E50 /* EKFlexWrapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 68D8F08021E9E6FE00FB0E50 /* EKFlexWrapView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		68D8F08521E9E7FA00FB0E50 /* EKFlexWrapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F08121E9E6FE00FB0E50 /* EKFlexWrapView.m */; };
 		68D8F08621E9E88E00FB0E50 /* EKFlexWrapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F08121E9E6FE00FB0E50 /* EKFlexWrapView.m */; };
+		68D8F0F121F4CE3D00FB0E50 /* FlexViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D8F0F021F4CE3D00FB0E50 /* FlexViewCell.m */; };
 		8F4C69E51FBD76710011DFA9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C69E41FBD76710011DFA9 /* AppDelegate.m */; };
 		8F4C69E81FBD76710011DFA9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C69E71FBD76710011DFA9 /* ViewController.m */; };
 		8F4C69ED1FBD76710011DFA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F4C69EC1FBD76710011DFA9 /* Assets.xcassets */; };
@@ -96,6 +97,8 @@
 		68D8F07E21E9DE1600FB0E50 /* FlexTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlexTagView.m; sourceTree = "<group>"; };
 		68D8F08021E9E6FE00FB0E50 /* EKFlexWrapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKFlexWrapView.h; sourceTree = "<group>"; };
 		68D8F08121E9E6FE00FB0E50 /* EKFlexWrapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKFlexWrapView.m; sourceTree = "<group>"; };
+		68D8F0EF21F4CE3D00FB0E50 /* FlexViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexViewCell.h; sourceTree = "<group>"; };
+		68D8F0F021F4CE3D00FB0E50 /* FlexViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlexViewCell.m; sourceTree = "<group>"; };
 		8F3058B120CFA6F9001A776A /* UIColor+EKExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EKExtension.h"; sourceTree = "<group>"; };
 		8F3058B220CFA6F9001A776A /* UIColor+EKExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EKExtension.m"; sourceTree = "<group>"; };
 		8F4C69E01FBD76710011DFA9 /* EasyKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +205,8 @@
 			children = (
 				68D8F07D21E9DE1600FB0E50 /* FlexTagView.h */,
 				68D8F07E21E9DE1600FB0E50 /* FlexTagView.m */,
+				68D8F0EF21F4CE3D00FB0E50 /* FlexViewCell.h */,
+				68D8F0F021F4CE3D00FB0E50 /* FlexViewCell.m */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -551,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68D8F08621E9E88E00FB0E50 /* EKFlexWrapView.m in Sources */,
+				68D8F0F121F4CE3D00FB0E50 /* FlexViewCell.m in Sources */,
 				681EC5EC21D614A400C43FCF /* UIView+EKExtension.m in Sources */,
 				681EC5EB21D60D3300C43FCF /* NSString+EKExtension.m in Sources */,
 				684953EA21D6058E00D0DE92 /* EKTextField.m in Sources */,
