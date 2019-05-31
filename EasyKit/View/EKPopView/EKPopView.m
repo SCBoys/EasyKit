@@ -8,7 +8,7 @@
 
 #import "EKPopView.h"
 
-@interface EKPopView ()
+@interface EKPopView ()<CAAnimationDelegate>
 @property (nonatomic, assign) EKPopViewDirection direction;
 
 //用于过渡动画的view，只有是rootPopView的时候才不为nil
@@ -16,11 +16,11 @@
 //只有是rootPopView的时候才不为nil
 @property (nonatomic, strong) UIView *container;
 
-@property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *topViewContainer;
 
-@property (nonatomic, strong) UIView *separateLine;
 @property (nonatomic, strong) UIView *dataViewConntainer;
+//
+@property (nonatomic, strong) UIView *contentView;
 
 @property (nonatomic, strong) UIView *bottomViewContainer;
 @property (nonatomic, strong) NSLayoutConstraint *bottomViewContainer_h;
@@ -29,9 +29,10 @@
 @property (nonatomic, strong) NSLayoutConstraint *dataView_h;
 @property (nonatomic, strong) NSLayoutConstraint *topViewContainer_h;
 
-///当只有是rootPopView的时候，该属性才不为nil
 @property (nonatomic, strong) NSMutableArray<EKPopView *> *popViews;
-@property (nonatomic, weak) EKPopView *rootPopView;
+
+@property (nonatomic, strong) CAShapeLayer *containerBackLayer;
+@property (nonatomic, assign) BOOL isPush;
 @end
 
 @implementation EKPopView
@@ -45,14 +46,23 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.containerBackLayer.frame = self.container.bounds;
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.container.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){self.cornerRadius,self.cornerRadius}];
+    self.containerBackLayer.path = path.CGPath;
+    self.containerBackLayer.fillColor = [[UIColor whiteColor] CGColor];
+}
+
 #pragma mark - Delegate & DataSource
 
 #pragma mark - event response
 - (void)tapOnMaskView:(id)sender {
     if ([self.popViewDelegate respondsToSelector:@selector(ekPopViewClickOnMaskView:)]) {
+        
         [self.popViewDelegate ekPopViewClickOnMaskView:self];
     }
-} 
+}
 
 #pragma mark - public method
 - (void)showInWindow {
@@ -100,10 +110,15 @@
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
         self.animate_layout.constant = self.direction == EKPopViewDirectionBottom ? contentHeight:-contentHeight;
         [self layoutIfNeeded];
+        [self viewDidLoad];
+        [self viewWillAppear];
+    } completion:^(BOOL finished) {
+        [self viewDidAppear];
     }];
 }
 
 - (void)pushView:(EKPopView *)view {
+    [self.rootPopView.popViews.lastObject.contentView endEditing:YES];
     view.rootPopView = self.rootPopView;
     [self.rootPopView.popViews addObject:view];
     view.dataView_h.constant = self.rootPopView.dataView_h.constant;
@@ -111,12 +126,13 @@
     UIView *transitionView = self.rootPopView.transitionView;
     [transitionView addSubview:view.contentView];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(view.contentView);
-    [view.contentView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view.contentView]|" options:0 metrics:nil views:views]];
-    [view.contentView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view.contentView]|" options:0 metrics:nil views:views]];
+    NSDictionary *views = @{@"contentv":view.contentView};
+    [view.contentView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentv]|" options:0 metrics:nil views:views]];
+    [view.contentView.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentv]|" options:0 metrics:nil views:views]];
     
-    [self.contentView layoutIfNeeded];
-    [self beginTransitionWithAnimateView:transitionView isPushed:YES];
+    [view.contentView layoutIfNeeded];
+    [view viewDidLoad];
+    [self.rootPopView beginTransitionWithAnimateView:transitionView isPushed:YES];
 }
 
 - (EKPopView *)popToPreviousView {
@@ -128,27 +144,54 @@
     [view.contentView removeFromSuperview];
     [root.popViews removeLastObject];
     
-    [self beginTransitionWithAnimateView:root.transitionView isPushed:NO];
+    [self.rootPopView beginTransitionWithAnimateView:root.transitionView isPushed:NO];
     return view;
 }
 
 - (void)dismiss {
+    [self.contentView endEditing:YES];
+    EKPopView *root = self.rootPopView;
     [UIView animateWithDuration:0.2 animations:^{
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
-        self.animate_layout.constant = 0;
-        [self layoutIfNeeded];
+        root.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+        root.animate_layout.constant = 0;
+        [root layoutIfNeeded];
     } completion:^(BOOL finished) {
         //清除约束
-        [self removeConstraint:self.animate_layout];
-        [self.contentView removeConstraint:self.contentView_h];
-        self.animate_layout = nil;
-        self.contentView_h = nil;
+        [root removeConstraint:self.animate_layout];
+        [root.contentView removeConstraint:self.contentView_h];
+        root.animate_layout = nil;
+        root.contentView_h = nil;
         ///清除视图
-        [self.popViews removeAllObjects];
-        self.popViews = nil;
-        self.rootPopView = nil;
-        [self removeFromSuperview];
+        [root.popViews removeAllObjects];
+        root.popViews = nil;
+        root.rootPopView = nil;
+        [root removeFromSuperview];
     }];
+}
+
+- (void)viewDidLoad {}
+- (void)viewWillAppear {}
+- (void)viewDidAppear {}
+- (void)viewDidDisappear {}
+
+#pragma mark - delegate
+- (void)animationDidStart:(CAAnimation *)anim {
+    if (self.isPush) {
+        [self.popViews.lastObject viewWillAppear];
+    } else {
+        if (self.popViews.lastObject == nil) {
+            [self viewWillAppear];
+        } else {
+            [self.popViews.lastObject viewWillAppear];
+        }
+    }
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    [self.popViews.lastObject viewDidAppear];
+    if (self.isPush) {
+        [self.popViews[self.popViews.count - 2] viewDidDisappear];
+    }
 }
 
 #pragma mark - private method
@@ -159,8 +202,10 @@
     self.transitionView.translatesAutoresizingMaskIntoConstraints = NO;
     self.container = [[UIView alloc] init];
     self.container.translatesAutoresizingMaskIntoConstraints = NO;
-    self.container.backgroundColor = [UIColor whiteColor];
+    self.container.backgroundColor = [UIColor clearColor];
+    self.containerBackLayer = [CAShapeLayer layer];
     [self addSubview:self.container];
+    [self.container.layer insertSublayer:self.containerBackLayer atIndex:0];
     [self.container addSubview:self.transitionView];
     [self.transitionView addSubview:self.contentView];
     
@@ -191,7 +236,7 @@
     //ui
     self.contentView = [[UIView alloc] init];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
     self.topViewContainer = [[UIView alloc] init];
     self.topViewContainer.translatesAutoresizingMaskIntoConstraints = NO;
     self.bottomViewContainer = [[UIView alloc] init];
@@ -200,29 +245,22 @@
     self.dataViewConntainer = [[UIView alloc] init];
     self.dataViewConntainer.translatesAutoresizingMaskIntoConstraints = NO;
     self.dataViewConntainer.backgroundColor = [UIColor clearColor];
-    self.separateLine = [[UIView alloc] init];
-    self.separateLine.translatesAutoresizingMaskIntoConstraints = NO;
-    self.separateLine.backgroundColor = [UIColor colorWithRed:229.0/255 green:229.0/255 blue:229.0/255 alpha:1];
     
     [self.contentView addSubview:self.topViewContainer];
-    [self.contentView addSubview:self.separateLine];
     [self.contentView addSubview:self.dataViewConntainer];
     [self.contentView addSubview:self.bottomViewContainer];
     //layout
-    NSDictionary *views = NSDictionaryOfVariableBindings(_topViewContainer,_separateLine,_dataViewConntainer,_bottomViewContainer);
-    NSNumber *lineHeight = @(1/[UIScreen mainScreen].scale);
-    NSDictionary *metrics = NSDictionaryOfVariableBindings(lineHeight);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_topViewContainer,_dataViewConntainer,_bottomViewContainer);
     [self.topViewContainer.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_topViewContainer]|" options:0 metrics:nil views:views]];
     self.topViewContainer_h = [NSLayoutConstraint constraintWithItem:self.topViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.topViewHeight];
     [self.topViewContainer addConstraint:self.topViewContainer_h];
-    [self.separateLine.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_separateLine]|" options:0 metrics:nil views:views]];
     [self.dataViewConntainer.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_dataViewConntainer]|" options:0 metrics:nil views:views]];
     self.dataView_h = [NSLayoutConstraint constraintWithItem:self.dataViewConntainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
     [self.bottomViewContainer.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_bottomViewContainer]|" options:0 metrics:nil views:views]];
     self.bottomViewContainer_h = [NSLayoutConstraint constraintWithItem:self.bottomViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
     [self.contentView addConstraints:@[self.bottomViewContainer_h,self.dataView_h]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_topViewContainer][_separateLine(lineHeight)][_dataViewConntainer][_bottomViewContainer]" options:0 metrics:metrics views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_topViewContainer][_dataViewConntainer][_bottomViewContainer]" options:0 metrics:nil views:views]];
 }
 
 #pragma mark - transition animate
@@ -232,7 +270,9 @@
     transitionAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     transitionAnimation.type = kCATransitionPush;
     transitionAnimation.subtype = isPushed ? kCATransitionFromRight : kCATransitionFromLeft;
+    transitionAnimation.delegate = self;
     [animateView.layer addAnimation:transitionAnimation forKey:@"transition"];
+    self.isPush = isPushed;
 }
 
 #pragma mark - getters and setters
