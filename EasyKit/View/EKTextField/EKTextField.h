@@ -10,20 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class EKTextField;
-@protocol EKTextFieldDelegate <NSObject>
-@optional
-- (BOOL)ekTextFieldShouldBeginEditing:(EKTextField *)textField;
-- (BOOL)ekTextFieldShouldEndEditing:(EKTextField *)textField;
-- (BOOL)ekTextFieldShouldReturn:(EKTextField *)textfield;
-- (BOOL)ekTextField:(EKTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
-- (void)ekTextFieldDidBeginEditing:(EKTextField *)textfield;
-- (void)ekTextFieldDidEndEditing:(EKTextField *)textfield;
-- (void)ekTextFieldDidChanged:(EKTextField *)textfield;
-@end
 @interface EKTextField : UITextField
 
-@property (nonatomic, weak, nullable) id<EKTextFieldDelegate> tf_delegate;
+@property (nonatomic, weak, nullable) id<UITextFieldDelegate> tf_delegate;
 // 总长度限制  0表示不限制
 @property (nonatomic, assign) NSUInteger limitLength;
 // 数值限制， 0表示不限制 (该属性只对UIKeyboardTypeDecimalPad,UIKeyboardTypeNumberPad 有效)
@@ -36,11 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isNumberValue;
 // 小数点后面保留位数， 0表示不保留
 @property (nonatomic, assign) NSUInteger decimalPlace;
-// 小数键盘的时候，用这个取值
-@property (nonatomic, copy, readonly) NSString *currentText;
-
 // 禁用emoji表情输入， 默认NO
 @property (nonatomic, assign) BOOL disableEmoji;
+// 禁用特殊字符输入， 默认NO
+@property (nonatomic, assign) BOOL disableSpecialCharacter;
 
 @end
 

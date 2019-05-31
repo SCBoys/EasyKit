@@ -20,8 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat itemInnerSpace;
 ///默认zero
 @property (nonatomic, assign) UIEdgeInsets contentInset;
-
-//视图必须实现sizeToFit函数来设置自身的frame.size，
+//视图必须满足self-sizing
 @property (nonatomic, copy) NSArray<UIView *> *itemViews;
 
 @end

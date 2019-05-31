@@ -23,7 +23,7 @@
     CGFloat scale = [UIScreen mainScreen].scale;
     cornerRaduis = cornerRaduis * scale;
     
-    CGRect r = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    CGRect r = CGRectMake(0.0f, 0.0f, size.width * scale, size.height * scale);
     UIGraphicsBeginImageContext(r.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -67,6 +67,15 @@
     return [UIImage imageWithCGImage:smallImage.CGImage scale:[UIScreen mainScreen].scale orientation:self.imageOrientation];
 }
 
+- (NSData *)ek_autoCompressImage {
+    return [self ek_compressImage:1000 compressionQuality:0.6];
+}
+
+- (NSData *)ek_compressImage:(CGFloat)size compressionQuality:(CGFloat)quality {
+    UIImage *resized = [self ek_scaleImageWithMaxSize:size];
+    return UIImageJPEGRepresentation(resized, quality);
+}
+
 - (NSData *)ek_compressImageUnderBytes:(NSUInteger)bytes {
     CGFloat compress = 0.9;
     NSData *compressedData = UIImageJPEGRepresentation(self, compress);
@@ -92,7 +101,7 @@
 
 - (UIImage *)ek_captureWithRect:(CGRect)rect {
     CGImageRef imageRef = self.CGImage;
-    CGRect finalRect = CGRectMake(CGRectGetMinY(rect)*self.scale, CGRectGetMinX(rect)*self.scale, CGRectGetHeight(rect)*self.scale, CGRectGetWidth(rect)*self.scale);
+    CGRect finalRect = CGRectMake(CGRectGetMinX(rect)*self.scale, CGRectGetMinY(rect)*self.scale, CGRectGetWidth(rect)*self.scale, CGRectGetHeight(rect)*self.scale);
     CGImageRef imagePartRef = CGImageCreateWithImageInRect(imageRef, finalRect);
     UIImage * cropImage = [UIImage imageWithCGImage:imagePartRef scale:self.scale orientation:self.imageOrientation];
     CGImageRelease(imagePartRef);
@@ -125,6 +134,19 @@
     UIGraphicsEndImageContext();
     
     return output;
+}
+
++ (UIImage *)ek_createImageWithView:(UIView *)view {
+    return [self ek_createImageWithView:view scale:[[UIScreen mainScreen] scale]];
+}
+
++ (UIImage *)ek_createImageWithView:(UIView *)view scale:(CGFloat)scale {
+    CGSize contextSize = CGSizeMake(view.frame.size.width, view.frame.size.height);
+    UIGraphicsBeginImageContextWithOptions(contextSize, true, [[UIScreen mainScreen] scale]);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
 }
 
 @end

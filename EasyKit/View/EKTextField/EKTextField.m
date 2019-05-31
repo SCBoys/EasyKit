@@ -7,13 +7,11 @@
 //
 
 #import "EKTextField.h"
-#import "NSString+EKExtension.h"
 
 @interface EKTextField()<UITextFieldDelegate>
-@property (nonatomic, assign) BOOL textChangeByPasteOrType;
 
-@property (nonatomic, copy) NSString *currentText;
 @end
+
 @implementation EKTextField
 
 #pragma mark - life cycle
@@ -32,39 +30,37 @@
 
 - (void)initObject {
     self.isNumberValue = NO;
-    self.textChangeByPasteOrType = YES;
     self.delegate = self;
-    [self addTarget:self action:@selector(tf_textDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
 #pragma mark - Delegate & DataSource
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldShouldBeginEditing:)]) {
-        return [self.tf_delegate ekTextFieldShouldBeginEditing:self];
+    if ([self.tf_delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {
+        return [self.tf_delegate textFieldShouldBeginEditing:self];
     } else {
         return YES;
     }
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldShouldEndEditing:)]) {
-        return [self.tf_delegate ekTextFieldShouldEndEditing:self];
+    if ([self.tf_delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
+        return [self.tf_delegate textFieldShouldEndEditing:self];
     } else {
         return YES;
     }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldShouldReturn:)]) {
-        return [self.tf_delegate ekTextFieldShouldReturn:self];
+    if ([self.tf_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
+        return [self.tf_delegate textFieldShouldReturn:self];
     } else {
         return YES;
     }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldDidBeginEditing:)]) {
-        [self.tf_delegate ekTextFieldDidBeginEditing:self];
+    if ([self.tf_delegate respondsToSelector:@selector(textFieldDidBeginEditing:)]) {
+        [self.tf_delegate textFieldDidBeginEditing:self];
     }
 }
 
@@ -72,15 +68,17 @@
     if ([self isDecimalMode]) {
         [self dealDecimalplace:textField.text];
     }
-    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldDidEndEditing:)]) {
-        [self.tf_delegate ekTextFieldDidEndEditing:self];
+    if ([self.tf_delegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
+        [self.tf_delegate textFieldDidEndEditing:self];
     }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    self.textChangeByPasteOrType = NO;
     
-    if (self.disableEmoji && [string ek_containsEmoji]) {
+    if (self.disableEmoji && [self ek_containsEmoji:string]) {
+        return NO;
+    }
+    if (self.disableSpecialCharacter && [self ek_containsSpecialCharacter:string]) {
         return NO;
     }
     
@@ -89,6 +87,7 @@
         return [self rhTextField:textField shouldChangeCharactersInRange:range replacementString:string];
     }
     
+    ///改变后的字符串
     NSMutableString *changedText  = textField.text.mutableCopy;
     [changedText replaceCharactersInRange:range withString:string];
     if (self.isNumberValue) {
@@ -97,8 +96,14 @@
         }
     }
     
-    //总长度限制
-    if (![self validateLength:changedText]) {
+    //总长度超出限制
+    NSInteger remainlength = ((NSInteger)self.limitLength) - ((NSInteger)textField.text.length);
+    if (self.limitLength != 0 && (remainlength == 0 || (remainlength > 0 && remainlength < string.length))) {
+        if (remainlength > 0 && remainlength < string.length) { //其他情况，比如粘贴的字符串大于剩余的，作截取
+            NSUInteger toIndex = remainlength;
+            NSString *remainedString = [string substringToIndex:toIndex];
+            [self insertText:remainedString];
+        }
         return NO;
     }
     
@@ -135,33 +140,14 @@
 }
 
 - (BOOL)rhTextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if ([self.tf_delegate respondsToSelector:@selector(ekTextField:shouldChangeCharactersInRange:replacementString:)]) {
-        return [self.tf_delegate ekTextField:(EKTextField *)textField shouldChangeCharactersInRange:range replacementString:string];
+    if ([self.tf_delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+        return [self.tf_delegate textField:(EKTextField *)textField shouldChangeCharactersInRange:range replacementString:string];
     } else {
         return YES;
     }
 }
 
 #pragma mark - event response
-- (void)tf_textDidChange:(id)sender {
-    if (!self.textChangeByPasteOrType) {
-        self.textChangeByPasteOrType = YES;
-        [self resetText];
-        return;
-    }
-    
-    if (![self validateLength:self.text]) {
-        self.text = self.currentText;
-        return;
-    }
-    
-    if (self.disableEmoji && [self.text ek_containsEmoji]) {
-        self.text = self.currentText;
-        return;
-    }
-    
-    [self resetText];
-}
 
 #pragma mark - public method
 
@@ -183,30 +169,11 @@
     [self resignFirstResponder];
 }
 
-- (void)resetText {
-    if ([self isDecimalMode]) {
-        if ([self.text hasSuffix:@"."]) {
-            return;
-        }
-    }
-    self.currentText = self.text;
-    if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldDidChanged:)]) {
-        [self.tf_delegate ekTextFieldDidChanged:self];
-    }
-}
-
 - (NSString *)cutIntegerWithDecimal:(NSString *)decimal {
     if (decimal == nil) {
         return @"";
     }
     return [decimal componentsSeparatedByString:@"."][0];
-}
-
-- (BOOL)validateLength:(NSString *)text {
-    if (self.limitLength == 0 || text.length <= self.limitLength) {
-        return YES;
-    }
-    return NO;
 }
 
 - (BOOL)validateMaxNumber:(NSString *)numberString {
@@ -243,6 +210,7 @@
     if (self.decimalPlace == 0) {
         if ([text hasSuffix:@"."]) {
             self.text = [self cutIntegerWithDecimal:text];
+            [self sendActionsForControlEvents:UIControlEventEditingChanged];
         }
     } else if (self.text.length > 0) {
         //小数点后面需要保留位数
@@ -261,17 +229,13 @@
                 integer = comps[0];
             }
             self.text = [NSString stringWithFormat:@"%@.%@",integer,decimal];
+            [self sendActionsForControlEvents:UIControlEventEditingChanged];
         }
     }
     
     if ([self.text hasPrefix:@"."]) {
         self.text = [NSString stringWithFormat:@"0%@",self.text];
-    }
-    if (![self.currentText isEqualToString:self.text]) {
-        self.currentText = self.text;
-        if ([self.tf_delegate respondsToSelector:@selector(ekTextFieldDidChanged:)]) {
-            [self.tf_delegate ekTextFieldDidChanged:self];
-        }
+        [self sendActionsForControlEvents:UIControlEventEditingChanged];
     }
 }
 
@@ -285,5 +249,28 @@
 
 
 #pragma mark - getters and setters
+- (BOOL)ek_containsEmoji:(NSString *)string
+{
+    __block BOOL returnValue = NO;
+    [string enumerateSubstringsInRange:NSMakeRange(0, [string length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock:
+     ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+         //单个字符长度大于等于判断为emoji表情
+         if (substring.length >= 2) {
+             returnValue = YES;
+             *stop = YES;
+         }
+     }];
+    
+    return returnValue;
+}
+
+- (BOOL)ek_containsSpecialCharacter:(NSString *)string
+{
+    NSString *characterRegex = @"[`~!@#$^&*()=|{}':;',\\[\\].<>/?！@￥……&*（）—|{}【】\\-‘；：“”'。\\\\，、？+•%_\\£\\€\\x22]";
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",characterRegex];
+    return [pre evaluateWithObject:string];
+}
+
+
 
 @end

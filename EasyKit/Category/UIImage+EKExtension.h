@@ -31,6 +31,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *)ek_scaleImageWithMaxSize:(CGFloat)maxSize;
 
 /**
+ 自动压缩图片尺寸， size控制在1000， 0.6
+ */
+- (NSData *)ek_autoCompressImage;
+
+/**
+ 压缩图片
+ @param size 尺寸
+ @param quality 压缩质量
+ */
+- (NSData *)ek_compressImage:(CGFloat)size compressionQuality:(CGFloat)quality;
+
+/**
  压缩图片
  
  @param bytes 不超过bytes
@@ -41,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  截取图片
-
+ 
  @param rectRatio 截取的区域比例
  */
 - (UIImage *)ek_captureWithRectRatio:(CGRect)rectRatio;
@@ -49,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  截取图片
-
+ 
  @param rect 截取的区域
  */
 - (UIImage *)ek_captureWithRect:(CGRect)rect;
@@ -57,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  给图片添加圆角
-
+ 
  @param raduisRatio 圆角比例
  @return 返回带圆角的图片
  */
@@ -65,11 +77,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  给图片添加圆角
-
+ 
  @param raduis 圆角值
  @return 返回带圆角的图片
  */
 - (UIImage *)ek_addCornerRaduis:(CGSize)raduis;
+
+
+/**
+ 将视图渲染成图片
+ 
+ @param view 视图
+ */
++ (UIImage *)ek_createImageWithView:(UIView *)view;
+
++ (UIImage *)ek_createImageWithView:(UIView *)view scale:(CGFloat)scale;
 
 @end
 
